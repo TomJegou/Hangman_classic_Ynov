@@ -8,6 +8,7 @@ import (
 
 func Engine(words []string) {
 	Clear()
+	debug_mod := true
 	maxError := 10
 	numberError := 0
 	word_to_guess := ChoseRandomWord(words)
@@ -27,19 +28,30 @@ func Engine(words []string) {
 	}
 	remainLetter := RemainingLetter(slice_byte_hidden, word_to_guess)
 	found := true
+	var input string
+	attempt_number := 0
 	for len(remainLetter) > 0 {
+		attempt_number++
 		Clear()
+		if debug_mod {
+			fmt.Println("Word to find: " + word_to_guess)
+			fmt.Printf("Number error max: %v\n", maxError)
+			fmt.Printf("Number error: %v\n", numberError)
+			fmt.Printf("Attempt number: %v\n", attempt_number)
+			if len(input) > 0 {
+				fmt.Println("Last input player: " + input)
+			}
+			fmt.Println()
+		}
 		if numberError >= maxError {
 			found = false
 			break
 		}
-		fmt.Println(word_to_guess) // A enlver
 		if numberError > 0 {
 			DisplayWrongLetter(numberError, maxError)
 			DisplayHangman(numberError)
 		}
 		DisplayInput(slice_byte_hidden, numberError)
-		var input string
 		fmt.Scanln(&input)
 		if IsIn(sliceAllChar, input) && IsIn(remainLetter, input) {
 			DiscoverLetter(slice_byte_hidden, input, word_to_guess)
