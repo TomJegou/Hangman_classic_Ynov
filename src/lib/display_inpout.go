@@ -2,9 +2,9 @@ package lib
 
 import "fmt"
 
-func DisplayInput(t []byte, attempt_remaining int) {
+func DisplayInput(t []byte, numberError int) {
 	currentStateWord := ""
-	if attempt_remaining == 10 {
+	if numberError == 0 {
 		fmt.Println("Good Luck, you have 10 attempts.")
 		fmt.Println()
 	}
@@ -16,5 +16,5 @@ func DisplayInput(t []byte, attempt_remaining int) {
 		}
 	}
 	fmt.Println(currentStateWord + "\n")
-	fmt.Println("Choose: ")
+	fmt.Print("Choose: ")
 }
