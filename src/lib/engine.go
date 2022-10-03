@@ -18,7 +18,7 @@ func Engine(words []string) {
 	slice_byte_hidden := []byte(hiddenWord)
 	for i := 0; i < numberLetterRevealed; i++ {
 		indexLetterRevealed := rand.New(rand.NewSource(time.Now().UnixNano())).Intn(len(slice_byte_hidden))
-		slice_byte_hidden[indexLetterRevealed] = word_to_guess[indexLetterRevealed]
+		DiscoverLetter(slice_byte_hidden, string(word_to_guess[indexLetterRevealed]), word_to_guess)
 	}
 	fmt.Println(word_to_guess)
 	fmt.Println(RemainingLetter(slice_byte_hidden, word_to_guess))
