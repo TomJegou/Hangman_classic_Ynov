@@ -28,11 +28,16 @@ func Engine(words []string) {
 	remainLetter := RemainingLetter(slice_byte_hidden, word_to_guess)
 	found := true
 	for len(remainLetter) > 0 {
+		Clear()
 		if numberError >= maxError {
 			found = false
 			break
 		}
 		fmt.Println(word_to_guess) // A enlver
+		if numberError > 0 {
+			DisplayWrongLetter(numberError, maxError)
+			DisplayHangman(numberError)
+		}
 		DisplayInput(slice_byte_hidden, numberError)
 		var input string
 		fmt.Scanln(&input)
@@ -41,8 +46,6 @@ func Engine(words []string) {
 			remainLetter = RemainingLetter(slice_byte_hidden, word_to_guess)
 		} else {
 			numberError++
-			DisplayWrongLetter(numberError, maxError)
-			DisplayHangman(numberError)
 		}
 	}
 	if found {
