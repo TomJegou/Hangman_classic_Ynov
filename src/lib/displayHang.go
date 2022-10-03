@@ -13,7 +13,7 @@ func DisplayHangman(attempt int) {
 	}
 	draw := []string{}
 	scanner := bufio.NewScanner(file)
-	for i := 0; i <= 8; i++ {
+	for i := 0 + attempt; i <= (9 * attempt); i++ {
 		for scanner.Scan() {
 			draw = append(draw, scanner.Text())
 			break
