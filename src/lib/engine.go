@@ -1,13 +1,13 @@
 package lib
 
 import (
-	"fmt"
 	"math/rand"
 	"time"
 )
 
 func Engine(words []string) {
 	Clear()
+	attemptRemaining := 10
 	word_to_guess := ChoseRandomWord(words)
 	hiddenWord := ""
 	numberLetterRevealed := len(word_to_guess)/2 - 1
@@ -31,5 +31,13 @@ func Engine(words []string) {
 			finalHiddenWord += string(slice_byte_hidden[i]) + " "
 		}
 	}
-	fmt.Println(finalHiddenWord)
+	letterRemaining := []string{}
+	for i := 0; i < len(slice_byte_hidden); i++ {
+		if string(slice_byte_hidden[i]) == "_" {
+			letterRemaining = append(letterRemaining, string(word_to_guess[i]))
+		}
+	}
+	currentStateWord := finalHiddenWord
+	DisplayInput(currentStateWord, attemptRemaining)
+
 }
