@@ -18,7 +18,6 @@ func DisplayHangman(attempt int) {
 			draw = append(draw, scanner.Text())
 			break
 		}
-
 	}
 	fmt.Print(draw)
 }
