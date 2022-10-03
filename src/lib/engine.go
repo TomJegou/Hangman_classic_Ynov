@@ -8,7 +8,7 @@ import (
 
 func Engine(words []string) {
 	Clear()
-	word_to_guess := ChosseRandomWord(words)
+	word_to_guess := ChoseRandomWord(words)
 	hiddenWord := ""
 	numberLetterRevealed := len(word_to_guess)/2 - 1
 	for i := 0; i < len(word_to_guess); i++ {

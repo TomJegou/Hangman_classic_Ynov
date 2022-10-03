@@ -5,6 +5,6 @@ import (
 	"time"
 )
 
-func ChosseRandomWord(dic []string) string {
+func ChoseRandomWord(dic []string) string {
 	return dic[rand.New(rand.NewSource(time.Now().UnixNano())).Intn(len(dic))]
 }
