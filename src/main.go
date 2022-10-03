@@ -11,6 +11,7 @@ func main() {
 	dic := os.Args[1:]
 	file, err := os.Open("../dictionnaries/" + dic[0] + ".txt")
 	if err != nil {
+		lib.Clear()
 		fmt.Println(err)
 	} else {
 		all_word := []string{}
