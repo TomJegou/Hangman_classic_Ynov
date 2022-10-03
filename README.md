@@ -28,5 +28,5 @@ bash setup_classic_hangman.sh
 Start the application
 
 ```
-./bin/classic_hangman [dictionnary_name]
+bash start_classique_hangman.sh [dictionnary_name]
 ```
