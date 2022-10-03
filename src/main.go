@@ -13,7 +13,7 @@ func main() {
 		file, err := os.Open("../dictionnaries/" + dic[0] + ".txt")
 		if err != nil {
 			lib.Clear()
-			fmt.Println(err)
+			fmt.Println("\033[31m", "This file doesn't exist")
 		} else {
 			all_word := []string{}
 			scanner := bufio.NewScanner(file)
@@ -24,6 +24,6 @@ func main() {
 			lib.Engine(all_word)
 		}
 	} else {
-		fmt.Println("No dictionnary given")
+		fmt.Println("\033[31m", "No dictionnary given")
 	}
 }
