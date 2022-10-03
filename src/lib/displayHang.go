@@ -16,11 +16,6 @@ func DisplayHangman(attempt int) {
 	pos := 0
 	for i := 0; i <= (8*attempt)+1; i++ {
 		for scanner.Scan() {
-			if attempt == 1 {
-				draw = append(draw, scanner.Text())
-				draw = append(draw, "\n")
-				break
-			}
 			if pos < 8*(attempt-1) {
 				pos += 1
 				break
