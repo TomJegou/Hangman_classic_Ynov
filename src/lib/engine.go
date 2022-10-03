@@ -8,7 +8,7 @@ import (
 
 func Engine(words []string) {
 	Clear()
-	debug_mod := true
+	debug_mod := false
 	maxError := 10
 	numberError := 0
 	word_to_guess := ChoseRandomWord(words)
@@ -30,6 +30,7 @@ func Engine(words []string) {
 	found := true
 	var input string
 	attempt_number := 0
+	invalid_ouput := false
 	for len(remainLetter) > 0 {
 		attempt_number++
 		Clear()
@@ -48,11 +49,26 @@ func Engine(words []string) {
 			break
 		}
 		if numberError > 0 {
-			DisplayWrongLetter(numberError, maxError)
+			if invalid_ouput {
+				fmt.Println("Invalid input, only one alphabetical character is supported in entry")
+				invalid_ouput = false
+			} else {
+				DisplayWrongLetter(numberError, maxError)
+			}
 			DisplayHangman(numberError)
 		}
 		DisplayInput(slice_byte_hidden, numberError)
 		fmt.Scanln(&input)
+		if len(input) != 1 {
+			numberError++
+			invalid_ouput = true
+			continue
+		}
+		if input >= "0" && input <= "9" {
+			numberError++
+			invalid_ouput = true
+			continue
+		}
 		if IsIn(sliceAllChar, input) && IsIn(remainLetter, input) {
 			DiscoverLetter(slice_byte_hidden, input, word_to_guess)
 			remainLetter = RemainingLetter(slice_byte_hidden, word_to_guess)
