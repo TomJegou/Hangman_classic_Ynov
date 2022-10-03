@@ -26,16 +26,29 @@ func Engine(words []string) {
 		DiscoverLetter(slice_byte_hidden, string(word_to_guess[indexLetterRevealed]), word_to_guess)
 	}
 	remainLetter := RemainingLetter(slice_byte_hidden, word_to_guess)
-	for len(remainLetter) > 0 && numberError < maxError {
+	found := true
+	for len(remainLetter) > 0 {
+		if numberError >= maxError {
+			found = false
+			break
+		}
+		fmt.Println(word_to_guess) // A enlver
 		DisplayInput(slice_byte_hidden, numberError)
 		var input string
 		fmt.Scanln(&input)
 		if IsIn(sliceAllChar, input) && IsIn(remainLetter, input) {
 			DiscoverLetter(slice_byte_hidden, input, word_to_guess)
+			remainLetter = RemainingLetter(slice_byte_hidden, word_to_guess)
 		} else {
 			numberError++
 			DisplayWrongLetter(numberError, maxError)
 			DisplayHangman(numberError)
 		}
+	}
+	if found {
+		fmt.Println()
+		fmt.Println("Congrat !")
+	} else {
+		fmt.Println("You didn't find the word")
 	}
 }
