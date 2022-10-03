@@ -63,12 +63,12 @@ func Engine(words []string) {
 	if found {
 		Clear()
 		DisplayHangman(numberError)
-		fmt.Println("Congrat !")
-		fmt.Println("You've found the word !")
-		fmt.Println("The word was: " + word_to_guess)
+		fmt.Println("\033[32m", "Congrat !")
+		fmt.Println("\033[32m", "You've found the word !")
+		fmt.Println("\033[32m", "The word was: "+word_to_guess)
 	} else {
 		DisplayHangman(numberError)
-		fmt.Println("You didn't find the word !")
-		fmt.Println("The word was: " + word_to_guess)
+		fmt.Println("\033[31m", "You didn't find the word !")
+		fmt.Println("\033[31m", "The word was: "+word_to_guess)
 	}
 }
