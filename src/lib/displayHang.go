@@ -32,5 +32,7 @@ func DisplayHangman(attempt int) {
 			}
 		}
 	}
-	fmt.Print(draw)
+	for i := 0; i < len(draw); i++ {
+		fmt.Print(draw[i])
+	}
 }
