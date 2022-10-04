@@ -69,11 +69,11 @@ func Game(lists_words []string) {
 		}
 		DisplayInput(slice_byte_hidden, numberError)
 		fmt.Scanln(&input)
-		// if len(input) < 1 {
-		// 	numberError++
-		// 	invalid_ouput = true
-		// 	continue
-		// }
+		if len(input) < 1 {
+			numberError++
+			invalid_ouput = true
+			continue
+		}
 		if len(input) > 1 {
 			if input == word_to_guess {
 				break
