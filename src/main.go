@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"hangman_classic/lib"
 	"os"
 )
@@ -13,7 +12,7 @@ func main() {
 		file, err := os.Open("../dictionnaries/" + dic[0] + ".txt")
 		if err != nil {
 			lib.Clear()
-			fmt.Println("\033[31m", "This file doesn't exist")
+			lib.PrintColor("This file doesn't exist\n", "Red")
 		} else {
 			all_word := []string{}
 			scanner := bufio.NewScanner(file)
@@ -24,6 +23,6 @@ func main() {
 			lib.Engine(all_word)
 		}
 	} else {
-		fmt.Println("\033[31m", "No dictionnary given")
+		lib.PrintColor("No dictionnary given\n", "Red")
 	}
 }

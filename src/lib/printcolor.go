@@ -13,4 +13,5 @@ func PrintColor(s, color string) {
 		"Cyan":   "\033[0;36m",
 		"White":  "\033[0;37m"}
 	fmt.Printf("%v%v", color_map[color], s)
+	fmt.Printf("%v", color_map["White"])
 }

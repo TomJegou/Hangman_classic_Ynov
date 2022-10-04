@@ -17,14 +17,14 @@ func Engine(lists_words []string) {
 		} else {
 			PrintColor("Welcome to Classic_Hangman made by jtom and rlouis !\n\n", "white")
 		}
-		fmt.Println("[q] quit\n[s] start new game") // change print
-		fmt.Print("Choose: ")
+		PrintColor("[q] quit\n[s] start new game\n", "White") // change print
+		PrintColor("Choose: ", "White")
 		fmt.Scan(&input)
 		if input == "s" {
 			Game(lists_words)
 		} else if input == "q" {
 			Clear()
-			fmt.Println("Thanks for Playing !")
+			PrintColor("Thanks for Playing !", "White")
 			keep_playing = false
 		} else {
 			invalid_ouput = true

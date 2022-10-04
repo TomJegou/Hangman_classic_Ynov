@@ -4,13 +4,15 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func DisplayInput(t []byte, numberError int) {
 	currentStateWord := ""
 	if numberError == 0 {
-		fmt.Println("Good Luck, you have 10 attempts.")
-		fmt.Println()
+		PrintColor("Good Luck, you have ", "White")
+		PrintColor("10 ", "Green")
+		PrintColor("attempts.\n\n", "White")
 	}
 	for i := 0; i < len(t); i++ {
 		if i == len(t)-1 {
@@ -20,13 +22,13 @@ func DisplayInput(t []byte, numberError int) {
 		}
 	}
 	fmt.Println(currentStateWord + "\n")
-	fmt.Print("Choose: ")
+	PrintColor("Choose: ", "White")
 }
 
 func DisplayHangman(attempt int) {
 	file, err := os.Open("../Templates/hangman.txt")
 	if err != nil {
-		fmt.Println(err)
+		PrintColor("File doesn't exist", "Red")
 	}
 	draw := []string{}
 	scanner := bufio.NewScanner(file)
@@ -45,10 +47,12 @@ func DisplayHangman(attempt int) {
 		}
 	}
 	for i := 0; i < len(draw); i++ {
-		fmt.Print(draw[i])
+		PrintColor(draw[i], "White")
 	}
 }
 
 func DisplayWrongLetter(numberError, maxError int) {
-	fmt.Printf("Not present in the word, %v attempts remaining\n", maxError-numberError)
+	PrintColor("Not present in the word, ", "White")
+	PrintColor(strconv.Itoa(maxError-numberError), "Red")
+	PrintColor(" attempts remaining\n", "White")
 }
