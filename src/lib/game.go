@@ -57,10 +57,10 @@ func Game(lists_words []string) {
 		}
 		if numberError > 0 {
 			if invalid_ouput {
-				PrintColor("Invalid input, only one alphabetical character is supported in entry", "White")
+				PrintColor("Invalid input, only one alphabetical character is supported in entry\n", "White")
 				invalid_ouput = false
 			} else if twice {
-				PrintColor("Already try this letter", "White")
+				PrintColor("Already try this letter\n", "White")
 				twice = false
 			} else {
 				DisplayWrongLetter(numberError, maxError)

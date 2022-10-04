@@ -21,6 +21,8 @@ func Engine(lists_words []string) {
 		PrintColor("Choose: ", "White")
 		fmt.Scan(&input)
 		if input == "s" {
+			Clear()
+			PrintColor("Starting game...", "White")
 			Game(lists_words)
 		} else if input == "q" {
 			Clear()
