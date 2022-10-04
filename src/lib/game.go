@@ -8,7 +8,7 @@ import (
 
 func Game(lists_words []string) {
 	Clear()
-	debug_mod := true
+	debug_mod := false
 	maxError := 10
 	numberError := 0
 	word_to_guess := ChoseRandomWord(lists_words)
@@ -57,7 +57,7 @@ func Game(lists_words []string) {
 		}
 		if numberError > 0 {
 			if invalid_ouput {
-				PrintColor("Invalid input, only one alphabetical character is supported in entry\n", "White")
+				PrintColor("Invalid input, only one alphabetical character is supported as entry\n", "White")
 				invalid_ouput = false
 			} else if twice {
 				PrintColor("Already try this letter\n", "White")
