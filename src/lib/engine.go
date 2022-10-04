@@ -69,10 +69,18 @@ func Engine(words []string) {
 		}
 		DisplayInput(slice_byte_hidden, numberError)
 		fmt.Scanln(&input)
-		if len(input) != 1 {
+		if len(input) < 1 {
 			numberError++
 			invalid_ouput = true
 			continue
+		}
+		if len(input) > 1 {
+			if input == word_to_guess {
+				break
+			} else {
+				numberError += 2
+				continue
+			}
 		}
 		if input >= "0" && input <= "9" {
 			numberError++
