@@ -22,11 +22,11 @@ cd Hangman_Classic
 Build the application
 
 ```
-bash setup_classic_hangman.sh
+mkdir bin && cd src && go build -o ../bin/classic_hangman main.go && cd ..
 ```
 
 Start the application
 
 ```
-bash start_classique_hangman.sh [dictionnary_name]
+cd src && ./../bin/classic_hangman [dictionnary_name] && cd ..
 ```
