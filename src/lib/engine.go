@@ -2,6 +2,7 @@ package lib
 
 import (
 	"fmt"
+	"time"
 )
 
 func Engine(lists_words []string) {
@@ -23,6 +24,7 @@ func Engine(lists_words []string) {
 		if input == "s" {
 			Clear()
 			PrintColor("Starting game...", "White")
+			time.Sleep(1 * time.Second)
 			Game(lists_words)
 		} else if input == "q" {
 			Clear()
