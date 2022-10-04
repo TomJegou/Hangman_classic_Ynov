@@ -98,12 +98,12 @@ func Game(lists_words []string) {
 	if found {
 		Clear()
 		DisplayHangman(numberError)
-		fmt.Println("\033[32m", "Congrat !", "\033[37m")
-		fmt.Println("\033[32m", "You've found the word !", "\033[37m")
+		fmt.Println("\033[32mCongrat !", "\033[37m")
+		fmt.Println("\033[32mYou've found the word !", "\033[37m")
 		fmt.Printf("\033[32mThe word was: %v \033[37m\n\n", word_to_guess)
 	} else {
 		DisplayHangman(numberError)
-		fmt.Println("\033[31m", "You didn't find the word !", "\033[37m")
+		fmt.Println("\033[31mYou didn't find the word !", "\033[37m")
 		fmt.Printf("\033[31mThe word was: %v \033[37m\n\n", word_to_guess)
 	}
 }
