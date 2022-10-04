@@ -1,12 +1,9 @@
 package lib
 
-import "fmt"
-
-func Checktwice(letter string, t []string) []string {
+func Checktwice(letter string, t []string) ([]string, bool) {
 	if IsIn(t, letter) {
-		fmt.Println("You already try this letter ")
-	} else {
-		t = append(t, letter)
+		return t, true
 	}
-	return t
+	t = append(t, letter)
+	return t, false
 }

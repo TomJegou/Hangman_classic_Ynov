@@ -14,6 +14,7 @@ func Engine(words []string) {
 	word_to_guess := ChoseRandomWord(words)
 	hiddenWord := ""
 	sliceAllChar := []string{}
+	inputHistory := []string{}
 	for i := 0; i < len(word_to_guess); i++ {
 		sliceAllChar = append(sliceAllChar, string(word_to_guess[i]))
 	}
@@ -25,12 +26,14 @@ func Engine(words []string) {
 	for i := 0; i < numberLetterRevealed; i++ {
 		indexLetterRevealed := rand.New(rand.NewSource(time.Now().UnixNano())).Intn(len(slice_byte_hidden))
 		DiscoverLetter(slice_byte_hidden, string(word_to_guess[indexLetterRevealed]), word_to_guess)
+		inputHistory, _ = Checktwice(string(word_to_guess[indexLetterRevealed]), inputHistory)
 	}
 	remainLetter := RemainingLetter(slice_byte_hidden, word_to_guess)
 	found := true
 	var input string
 	attempt_number := 0
 	invalid_ouput := false
+	twice := false
 	for len(remainLetter) > 0 {
 		attempt_number++
 		Clear()
@@ -39,6 +42,10 @@ func Engine(words []string) {
 			fmt.Printf("Number error max: %v\n", maxError)
 			fmt.Printf("Number error: %v\n", numberError)
 			fmt.Printf("Attempt number: %v\n", attempt_number)
+			if len(inputHistory) > 0 {
+				fmt.Print("Input history")
+				fmt.Println(inputHistory)
+			}
 			if len(input) > 0 {
 				fmt.Println("Last input player: " + input)
 			}
@@ -52,6 +59,9 @@ func Engine(words []string) {
 			if invalid_ouput {
 				fmt.Println("Invalid input, only one alphabetical character is supported in entry")
 				invalid_ouput = false
+			} else if twice {
+				fmt.Println("Already try this letter")
+				twice = false
 			} else {
 				DisplayWrongLetter(numberError, maxError)
 			}
@@ -69,6 +79,7 @@ func Engine(words []string) {
 			invalid_ouput = true
 			continue
 		}
+		inputHistory, twice = Checktwice(input, inputHistory)
 		if IsIn(sliceAllChar, input) && IsIn(remainLetter, input) {
 			DiscoverLetter(slice_byte_hidden, input, word_to_guess)
 			remainLetter = RemainingLetter(slice_byte_hidden, word_to_guess)
