@@ -57,10 +57,10 @@ func Game(lists_words []string) {
 		}
 		if numberError > 0 {
 			if invalid_ouput {
-				fmt.Println("Invalid input, only one alphabetical character is supported in entry")
+				PrintColor("Invalid input, only one alphabetical character is supported in entry", "White")
 				invalid_ouput = false
 			} else if twice {
-				fmt.Println("Already try this letter")
+				PrintColor("Already try this letter", "White")
 				twice = false
 			} else {
 				DisplayWrongLetter(numberError, maxError)
@@ -98,12 +98,9 @@ func Game(lists_words []string) {
 	if found {
 		Clear()
 		DisplayHangman(numberError)
-		fmt.Println("\033[32mCongrat !", "\033[37m")
-		fmt.Println("\033[32mYou've found the word !", "\033[37m")
-		fmt.Printf("\033[32mThe word was: %v \033[37m\n\n", word_to_guess)
+		PrintColor("Congrat !\nYou've found the word\nThe word was: "+word_to_guess+"\n\n", "Green")
 	} else {
 		DisplayHangman(numberError)
-		fmt.Println("\033[31mYou didn't find the word !", "\033[37m")
-		fmt.Printf("\033[31mThe word was: %v \033[37m\n\n", word_to_guess)
+		PrintColor("You didn't find the word !\nThe word was: "+word_to_guess+"\n\n", "Red")
 	}
 }

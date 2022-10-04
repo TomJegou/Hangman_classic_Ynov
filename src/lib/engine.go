@@ -12,12 +12,12 @@ func Engine(lists_words []string) {
 	for keep_playing {
 		if invalid_ouput {
 			Clear()
-			fmt.Print("Invalid output !\n\n")
+			PrintColor("Invalid output !\n\n", "White")
 			invalid_ouput = false
 		} else {
-			fmt.Print("Welcome to Classic_Hangman made by jtom and rlouis !\n\n")
+			PrintColor("Welcome to Classic_Hangman made by jtom and rlouis !\n\n", "white")
 		}
-		fmt.Println("[q] quit\n[s] start new game")
+		fmt.Println("[q] quit\n[s] start new game") // change print
 		fmt.Print("Choose: ")
 		fmt.Scan(&input)
 		if input == "s" {
