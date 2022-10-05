@@ -11,6 +11,7 @@ func DisplayAsciiWord(word string) {
 		w := []byte(string(word[i]))
 		DisplayAsciiLetter(w)
 	}
+
 }
 
 func DisplayAsciiLetter(word []byte) {
