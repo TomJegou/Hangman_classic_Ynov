@@ -27,9 +27,8 @@ func DisplayAsciiLetter(word []byte) {
 			for scanner.Scan() {
 				if pos < 9*(int(word[k]))-1 {
 					pos += 1
-				} else if pos <= 9*(int(word[k]))+9 {
+				} else if pos <= 9*(int(word[k]))+1 {
 					draw = append(draw, scanner.Text())
-					draw = append(draw, "\n")
 					pos += 1
 					break
 				}
