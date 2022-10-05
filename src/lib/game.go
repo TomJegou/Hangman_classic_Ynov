@@ -110,7 +110,7 @@ func Game(lists_words []string, display_mod func([]byte, int)) {
 			PrintColor("Invalid output", "White")
 			invalid_ouput = false
 		}
-		PrintColor("[c]continue [q]quit [b]Back\n", "White")
+		PrintColor("[c]continue [q]quit [b]Back\n\n", "White")
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input)
 		if input == "c" {
@@ -120,9 +120,9 @@ func Game(lists_words []string, display_mod func([]byte, int)) {
 			Game(lists_words, display_mod)
 		} else if input == "q" {
 			Clear()
-			PrintColor("Thanks for playing !", "White")
+			PrintColor("Thanks for playing !\n", "White")
 			time.Sleep(1 * time.Second)
-			os.Exit(1)
+			os.Exit(0)
 		} else if input == "b" {
 			Clear()
 			loop = false
