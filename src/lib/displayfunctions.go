@@ -56,3 +56,34 @@ func DisplayWrongLetter(numberError, maxError int) {
 	PrintColor(strconv.Itoa(maxError-numberError), "Red")
 	PrintColor(" attempts remaining\n", "White")
 }
+
+func getpositioninalphabet(letter byte) int {
+	return int(letter) - 65
+}
+
+func getline(line_number int, template_name string) string {
+	file, err := os.Open("../Templates/" + template_name + ".txt")
+	if err != nil {
+		fmt.Println(err)
+	}
+	filescan := bufio.NewScanner(file)
+	i := 1
+	for filescan.Scan() {
+		if i == line_number {
+			return filescan.Text()
+		} else {
+			i++
+		}
+	}
+	return ""
+}
+
+func DisplayModLetter(t []byte, template_name string) {
+	for i := 0; i < 9; i++ {
+		l := ""
+		for j := 0; j < len(t); j++ {
+			l += getline(297+i+getpositioninalphabet(t[j])*9, template_name)
+		}
+		fmt.Println(l)
+	}
+}
