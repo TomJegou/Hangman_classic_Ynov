@@ -19,7 +19,7 @@ func getline(line_number int) string {
 	i := 1
 	for filescan.Scan() {
 		if i == line_number {
-			return filescan.Text()
+			return filescan.Text()[:len(filescan.Text())]
 		} else {
 			i++
 		}
@@ -27,8 +27,8 @@ func getline(line_number int) string {
 	return ""
 }
 
-func DisplayStickLetter() {
+func DisplayStickLetter(t []byte) {
 	for i := 0; i < 9; i++ {
-		fmt.Println(getline(297 + i + getpositioninalphabet('j')*9))
+		fmt.Println(getline(297 + i + getpositioninalphabet(t[0])*9))
 	}
 }
