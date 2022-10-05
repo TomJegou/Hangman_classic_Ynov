@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func DisplayAsciiWord(word string) { //test
+func DisplayAsciiWord(word string) {
 	for i := 0; i < len(word); i++ {
 		w := []byte(string(word[i]))
 		DisplayAsciiLetter(w)
