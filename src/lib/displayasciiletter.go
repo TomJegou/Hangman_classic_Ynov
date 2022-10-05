@@ -23,21 +23,21 @@ func DisplayAsciiLetter(word []byte) {
 	pos := 0
 	for k := 0; k < len(word); k++ {
 		word[k] = word[k] - 32
-		kIntager := int(word[k])
-		for i := 0; i < 9*(kIntager)+1; i++ {
+		for i := 0; i < 9*(int(word[k]))+1; i++ {
 			for scanner.Scan() {
-				if pos < 9*(kIntager)-1 {
+				if pos < 9*(int(word[k]))-1 {
 					pos += 1
-				} else if pos < 9*(kIntager)+9 {
+				} else if pos <= 9*(int(word[k]))+9 {
 					draw = append(draw, scanner.Text())
 					draw = append(draw, "\n")
 					pos += 1
 					break
 				}
+
 			}
 		}
 	}
 	for i := 0; i < len(draw); i++ {
-		fmt.Print(draw[i])
+		PrintColor(draw[i], "White")
 	}
 }
