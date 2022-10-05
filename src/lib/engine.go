@@ -17,7 +17,7 @@ func Engine(lists_words []string) {
 		} else {
 			PrintColor("Welcome to Classic_Hangman made by jtom and rlouis !\n\n", "white")
 		}
-		PrintColor("[q] quit\n[s] start new game\n\n", "White") // change print
+		PrintColor("[q] quit\n[s] start new game\n\n", "White")
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input)
 		if input == "s" {
