@@ -3,6 +3,7 @@ package lib
 import (
 	"fmt"
 	"math/rand"
+	"os"
 	"time"
 )
 
@@ -103,8 +104,31 @@ func Game(lists_words []string, display_mod func([]byte, int)) {
 		DisplayHangman(numberError)
 		PrintColor("You didn't find the word !\nThe word was: "+word_to_guess+"\n\n", "Red")
 	}
-	// loop := true
-	// for loop {
-	// 	PrintColor()
-	// }
+	loop := true
+	for loop {
+		if invalid_ouput {
+			PrintColor("Invalid output", "White")
+			invalid_ouput = false
+		}
+		PrintColor("[c]continue [q]quit [b]Back\n", "White")
+		PrintColor("Choose: ", "White")
+		fmt.Scanln(&input)
+		if input == "c" {
+			Clear()
+			PrintColor("Starting new game", "White")
+			time.Sleep(1 * time.Second)
+			Game(lists_words, display_mod)
+		} else if input == "q" {
+			Clear()
+			PrintColor("Thanks for playing !", "White")
+			time.Sleep(1 * time.Second)
+			os.Exit(1)
+		} else if input == "b" {
+			Clear()
+			loop = false
+		} else {
+			Clear()
+			invalid_ouput = true
+		}
+	}
 }
