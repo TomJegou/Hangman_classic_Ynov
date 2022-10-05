@@ -12,7 +12,8 @@ func Game(lists_words []string, display_mod string) {
 	debug_mod := false
 	maxError := 10
 	numberError := 0
-	word_to_guess := ChoseRandomWord(lists_words)
+	//word_to_guess := ChoseRandomWord(lists_words)
+	word_to_guess := "tlbpq"
 	hiddenWord := ""
 	sliceAllChar := []string{}
 	inputHistory := []string{}
@@ -104,9 +105,11 @@ func Game(lists_words []string, display_mod string) {
 	if found {
 		Clear()
 		DisplayHangman(numberError)
+		DisplayModLetter(slice_byte_hidden, display_mod)
 		PrintColor("Congrat !\nYou've found the word\nThe word was: "+word_to_guess+"\n\n", "Green")
 	} else {
 		DisplayHangman(numberError)
+		DisplayModLetter(slice_byte_hidden, display_mod)
 		PrintColor("You didn't find the word !\nThe word was: "+word_to_guess+"\n\n", "Red")
 	}
 	loop := true

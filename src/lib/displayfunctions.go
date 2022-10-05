@@ -2,7 +2,6 @@ package lib
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strconv"
 )
@@ -16,7 +15,7 @@ func DisplayClassic(t []byte) {
 			currentStateWord += string(t[i]) + " "
 		}
 	}
-	fmt.Println(currentStateWord + "\n")
+	PrintColor(currentStateWord+"\n", "White")
 	PrintColor("Choose: ", "White")
 }
 
@@ -41,7 +40,7 @@ func DisplayHangman(attempt int) {
 			}
 		}
 	}
-	for i := 0; i < len(draw); i++ {
+	for i := 0; i < len(draw)-1; i++ {
 		PrintColor(draw[i], "White")
 	}
 }
@@ -59,7 +58,7 @@ func getpositioninalphabet(letter byte) int {
 func getline(line_number int, template_name string) string {
 	file, err := os.Open("../Templates/" + template_name + ".txt")
 	if err != nil {
-		fmt.Println(err)
+		PrintColor("This file doesn't exist", "Red")
 	}
 	filescan := bufio.NewScanner(file)
 	i := 1
@@ -81,11 +80,11 @@ func DisplayModLetter(t []byte, template_mod string) {
 	template_name := map[string]string{
 		"1": "standard",
 		"2": "thinkertoy"}
-	for i := 2; i < 9; i++ {
+	for i := 2; i <= 9; i++ {
 		l := ""
 		for j := 0; j < len(t); j++ {
 			l += getline(297+i+getpositioninalphabet(t[j])*9, template_name[template_mod])
-			if j != len(t)-2 {
+			if j != len(t)-1 {
 				l += getline(i, template_name[template_mod])
 			}
 		}
