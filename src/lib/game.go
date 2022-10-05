@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func Game(lists_words []string) {
+func Game(lists_words []string, display_mod func([]byte, int)) {
 	Clear()
 	debug_mod := false
 	maxError := 10
@@ -67,7 +67,7 @@ func Game(lists_words []string) {
 			}
 			DisplayHangman(numberError)
 		}
-		DisplayInput(slice_byte_hidden, numberError)
+		display_mod(slice_byte_hidden, numberError)
 		fmt.Scanln(&input)
 		if len(input) < 1 {
 			numberError++
@@ -103,4 +103,8 @@ func Game(lists_words []string) {
 		DisplayHangman(numberError)
 		PrintColor("You didn't find the word !\nThe word was: "+word_to_guess+"\n\n", "Red")
 	}
+	// loop := true
+	// for loop {
+	// 	PrintColor()
+	// }
 }

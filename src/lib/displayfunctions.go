@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func DisplayInput(t []byte, numberError int) {
+func DisplayClassic(t []byte, numberError int) {
 	currentStateWord := ""
 	if numberError == 0 {
 		PrintColor("Good Luck, you have ", "White")

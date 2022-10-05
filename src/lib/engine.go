@@ -2,7 +2,6 @@ package lib
 
 import (
 	"fmt"
-	"time"
 )
 
 func Engine(lists_words []string) {
@@ -20,15 +19,13 @@ func Engine(lists_words []string) {
 		}
 		PrintColor("[q] quit\n[s] start new game\n", "White") // change print
 		PrintColor("Choose: ", "White")
-		fmt.Scan(&input)
+		fmt.Scanln(&input)
 		if input == "s" {
 			Clear()
-			PrintColor("Starting game...", "White")
-			time.Sleep(1 * time.Second)
-			Game(lists_words)
+			MenuMod(lists_words)
 		} else if input == "q" {
 			Clear()
-			PrintColor("Thanks for Playing !", "White")
+			PrintColor("Thanks for Playing !\n", "White")
 			keep_playing = false
 		} else {
 			invalid_ouput = true
