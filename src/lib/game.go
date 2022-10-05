@@ -12,8 +12,7 @@ func Game(lists_words []string, display_mod string) {
 	debug_mod := false
 	maxError := 10
 	numberError := 0
-	//word_to_guess := ChoseRandomWord(lists_words)
-	word_to_guess := "tlbpq"
+	word_to_guess := ChoseRandomWord(lists_words)
 	hiddenWord := ""
 	sliceAllChar := []string{}
 	inputHistory := []string{}
