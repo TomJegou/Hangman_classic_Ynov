@@ -7,11 +7,11 @@ import (
 )
 
 func getpositioninalphabet(letter byte) int {
-	return int(letter) - 97
+	return int(letter) - 65
 }
 
 func getline(line_number int) string {
-	file, err := os.Open("../Templates/thinkertoy.txt")
+	file, err := os.Open("../Templates/standard.txt")
 	if err != nil {
 		fmt.Println(err)
 	}
