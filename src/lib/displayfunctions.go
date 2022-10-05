@@ -85,6 +85,9 @@ func DisplayModLetter(t []byte, template_mod string) {
 		l := ""
 		for j := 0; j < len(t); j++ {
 			l += getline(297+i+getpositioninalphabet(t[j])*9, template_name[template_mod])
+			if j != len(t)-2 {
+				l += getline(i, template_name[template_mod])
+			}
 		}
 		PrintColor(l+"\n", "White")
 	}
