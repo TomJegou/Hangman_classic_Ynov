@@ -112,7 +112,7 @@ func Game(lists_words []string, display_mod string) {
 	loop := true
 	for loop {
 		if invalid_ouput {
-			PrintColor("Invalid output", "White")
+			PrintColor("Invalid output\n", "White")
 			invalid_ouput = false
 		}
 		PrintColor("[c]continue [q]quit [b]Back\n\n", "White")

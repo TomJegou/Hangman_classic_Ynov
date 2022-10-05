@@ -81,7 +81,7 @@ func DisplayModLetter(t []byte, template_mod string) {
 	template_name := map[string]string{
 		"1": "standard",
 		"2": "thinkertoy"}
-	for i := 0; i < 9; i++ {
+	for i := 2; i < 9; i++ {
 		l := ""
 		for j := 0; j < len(t); j++ {
 			l += getline(297+i+getpositioninalphabet(t[j])*9, template_name[template_mod])
