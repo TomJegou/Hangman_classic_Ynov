@@ -36,13 +36,13 @@ func Game(lists_words []string, display_mod string) {
 	invalid_ouput := false
 	twice := false
 	for len(remainLetter) > 0 {
+		Clear()
 		if numberError == 0 {
 			PrintColor("Good Luck, you have ", "White")
 			PrintColor("10 ", "Green")
 			PrintColor("attempts.\n\n", "White")
 		}
 		attempt_number++
-		Clear()
 		if debug_mod {
 			fmt.Println("Word to find: " + word_to_guess)
 			fmt.Printf("Number error max: %v\n", maxError)

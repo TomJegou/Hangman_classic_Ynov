@@ -86,6 +86,7 @@ func DisplayModLetter(t []byte, template_mod string) {
 		for j := 0; j < len(t); j++ {
 			l += getline(297+i+getpositioninalphabet(t[j])*9, template_name[template_mod])
 		}
-		fmt.Println(l)
+		PrintColor(l+"\n", "White")
 	}
+	PrintColor("Choose: ", "White")
 }
