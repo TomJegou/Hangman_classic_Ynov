@@ -9,8 +9,6 @@ func MenuMod(lists_words []string) {
 	var input string
 	loop := true
 	invalid_ouput := false
-	all_mod := map[string]interface{}{
-		"0": DisplayClassic}
 	for loop {
 		if invalid_ouput {
 			PrintColor("Invalid input\n\n", "White")
@@ -18,8 +16,8 @@ func MenuMod(lists_words []string) {
 		}
 		PrintColor("Choose your mod\n\n", "White")
 		PrintColor("[0]Classique\n", "Blue")
-		PrintColor("[1]Ascii * In progress\n", "White")
-		PrintColor("[2]Stick * In progress\n", "Purple")
+		PrintColor("[1]Ascii\n", "White")
+		PrintColor("[2]Stick\n", "Purple")
 		PrintColor("[3]Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input)
@@ -33,7 +31,7 @@ func MenuMod(lists_words []string) {
 			Clear()
 			PrintColor("Starting game...", "White")
 			time.Sleep(1 * time.Second)
-			Game(lists_words, all_mod[input].(func([]byte, int)))
+			Game(lists_words, input)
 		}
 	}
 }

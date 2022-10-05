@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func Game(lists_words []string, display_mod func([]byte, int)) {
+func Game(lists_words []string, display_mod string) {
 	Clear()
 	debug_mod := false
 	maxError := 10
@@ -36,6 +36,11 @@ func Game(lists_words []string, display_mod func([]byte, int)) {
 	invalid_ouput := false
 	twice := false
 	for len(remainLetter) > 0 {
+		if numberError == 0 {
+			PrintColor("Good Luck, you have ", "White")
+			PrintColor("10 ", "Green")
+			PrintColor("attempts.\n\n", "White")
+		}
 		attempt_number++
 		Clear()
 		if debug_mod {
@@ -68,7 +73,7 @@ func Game(lists_words []string, display_mod func([]byte, int)) {
 			}
 			DisplayHangman(numberError)
 		}
-		display_mod(slice_byte_hidden, numberError)
+		DisplayModLetter(slice_byte_hidden, display_mod)
 		fmt.Scanln(&input)
 		if len(input) < 1 {
 			numberError++

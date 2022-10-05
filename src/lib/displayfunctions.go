@@ -7,13 +7,8 @@ import (
 	"strconv"
 )
 
-func DisplayClassic(t []byte, numberError int) {
+func DisplayClassic(t []byte) {
 	currentStateWord := ""
-	if numberError == 0 {
-		PrintColor("Good Luck, you have ", "White")
-		PrintColor("10 ", "Green")
-		PrintColor("attempts.\n\n", "White")
-	}
 	for i := 0; i < len(t); i++ {
 		if i == len(t)-1 {
 			currentStateWord += string(t[i])
@@ -78,11 +73,18 @@ func getline(line_number int, template_name string) string {
 	return ""
 }
 
-func DisplayModLetter(t []byte, template_name string) {
+func DisplayModLetter(t []byte, template_mod string) {
+	if template_mod == "0" {
+		DisplayClassic(t)
+		return
+	}
+	template_name := map[string]string{
+		"1": "standard",
+		"2": "thinkertoy"}
 	for i := 0; i < 9; i++ {
 		l := ""
 		for j := 0; j < len(t); j++ {
-			l += getline(297+i+getpositioninalphabet(t[j])*9, template_name)
+			l += getline(297+i+getpositioninalphabet(t[j])*9, template_name[template_mod])
 		}
 		fmt.Println(l)
 	}
