@@ -120,7 +120,7 @@ func Game(lists_words []string, display_mod string) {
 		fmt.Scanln(&input)
 		if input == "c" {
 			Clear()
-			PrintColor("Starting new game", "White")
+			PrintColor("Starting new game...", "White")
 			time.Sleep(1 * time.Second)
 			Game(lists_words, display_mod)
 		} else if input == "q" {
