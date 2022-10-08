@@ -105,11 +105,11 @@ func Game(lists_words []string, display_mod string) {
 		Clear()
 		DisplayHangman(numberError)
 		DisplayModLetter(slice_byte_hidden, display_mod)
-		PrintColor("Congrat !\nYou've found the word\nThe word was: "+word_to_guess+"\n\n", "Green")
+		PrintColor("\nCongrat !\nYou've found the word\nThe word was: "+word_to_guess+"\n\n", "Green")
 	} else {
 		DisplayHangman(numberError)
 		DisplayModLetter(slice_byte_hidden, display_mod)
-		PrintColor("You didn't find the word !\nThe word was: "+word_to_guess+"\n\n", "Red")
+		PrintColor("\nYou didn't find the word !\nThe word was: "+word_to_guess+"\n\n", "Red")
 	}
 	loop := true
 	for loop {
