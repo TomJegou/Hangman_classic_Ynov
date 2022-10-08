@@ -3,8 +3,8 @@ package lib
 import "fmt"
 
 /*
-The function Printcolor is use to replace fmt.Print and its print whit color we define in this func
-For that we used the ANSI Escape Sequences
+Function used to print in color some texts
+We used the ANSI Escape Sequences
 */
 func PrintColor(s, color string) {
 	color_map := map[string]string{
