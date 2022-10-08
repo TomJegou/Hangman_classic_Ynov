@@ -1,12 +1,13 @@
 package lib
 
 /*
-Here we check if the letter as been already play if yes it return true otherwhise it's return false
+Here we check if the letter parameter is twice in a string table t,
+if yes it returns true and the table otherwhise it append the letter in t and returns false
 */
 func Checktwice(letter string, t []string) ([]string, bool) {
-	if IsIn(t, letter) { // check if the letter is in
+	if IsIn(t, letter) {
 		return t, true
 	}
-	t = append(t, letter) // append the letter that who just been played and are not already in the tab
+	t = append(t, letter)
 	return t, false
 }
