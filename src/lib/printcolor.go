@@ -3,11 +3,11 @@ package lib
 import "fmt"
 
 /*
-Function used to print in color some texts
-We used the ANSI Escape Sequences
+Function used to print texts in color
+We use the ANSI Escape Sequences
 */
 func PrintColor(s, color string) {
-	color_map := map[string]string{
+	color_map := map[string]string{ //map to store the corresponding color's ansi code
 		"Black":  "\033[0;30m",
 		"Red":    "\033[0;31m",
 		"Green":  "\033[0;32m",

@@ -1,7 +1,7 @@
 package lib
 
 /*
-Fuction used to change the "_" to the corresponding letter from the word
+Fuction used to change the "_" to the corresponding letter from the word to guess
 */
 
 func DiscoverLetter(t []byte, letter string, word string) {
