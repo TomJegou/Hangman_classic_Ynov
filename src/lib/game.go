@@ -127,7 +127,7 @@ func Game(lists_words []string, display_mod string) {
 			Game(lists_words, display_mod)
 		} else if input == "q" {
 			Clear()
-			PrintColor("Thanks for playing !\n", "White")
+			PrintColor("Thanks for playing !", "White")
 			time.Sleep(1 * time.Second)
 			os.Exit(0)
 		} else if input == "b" {
