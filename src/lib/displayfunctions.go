@@ -51,27 +51,6 @@ func DisplayWrongLetter(numberError, maxError int) {
 	PrintColor(" attempts remaining\n", "White")
 }
 
-func getpositioninalphabet(letter byte) int {
-	return int(letter) - 65
-}
-
-func getline(line_number int, template_name string) string {
-	file, err := os.Open("../Templates/" + template_name + ".txt")
-	if err != nil {
-		PrintColor("This file doesn't exist", "Red")
-	}
-	filescan := bufio.NewScanner(file)
-	i := 1
-	for filescan.Scan() {
-		if i == line_number {
-			return filescan.Text()
-		} else {
-			i++
-		}
-	}
-	return ""
-}
-
 func DisplayModLetter(t []byte, template_mod string) {
 	if template_mod == "0" {
 		DisplayClassic(t)
@@ -83,9 +62,9 @@ func DisplayModLetter(t []byte, template_mod string) {
 	for i := 2; i <= 9; i++ {
 		l := ""
 		for j := 0; j < len(t); j++ {
-			l += getline(297+i+getpositioninalphabet(t[j])*9, template_name[template_mod])
+			l += Getline(297+i+Getpositioninalphabet(t[j])*9, template_name[template_mod])
 			if j != len(t)-1 {
-				l += getline(i, template_name[template_mod])
+				l += Getline(i, template_name[template_mod])
 			}
 		}
 		PrintColor(l+"\n", "White")
