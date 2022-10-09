@@ -17,6 +17,7 @@ func GetFileInLine(file_path string) []string {
 		PrintColor("This file doesn't exist\n", "Red")
 		os.Exit(0)
 	} else {
+		defer file.Close()
 		scanner := bufio.NewScanner(file)
 		scanner.Split(bufio.ScanLines)
 		for scanner.Scan() {
