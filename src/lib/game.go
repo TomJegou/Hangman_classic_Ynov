@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func Game(lists_words []string, display_mod string, templates_names map[string]string) {
+func Game(lists_words []string, display_mode string, templates_names map[string]string) {
 	Clear()
 	debug_mod := false // Boolean to activate the debug mod
 	maxError := 10
@@ -75,7 +75,7 @@ func Game(lists_words []string, display_mod string, templates_names map[string]s
 			}
 			DisplayHangman(numberError)
 		}
-		DisplayModLetter(slice_byte_hidden, display_mod, templates_names)
+		DisplayModLetter(slice_byte_hidden, display_mode, templates_names)
 		fmt.Scanln(&input) // get the intput player
 		// check the input validity
 		if len(input) < 1 {
@@ -109,11 +109,11 @@ func Game(lists_words []string, display_mod string, templates_names map[string]s
 	if found {
 		Clear()
 		DisplayHangman(numberError)
-		DisplayModLetter(slice_byte_hidden, display_mod, templates_names)
+		DisplayModLetter(slice_byte_hidden, display_mode, templates_names)
 		PrintColor("\nCongrat !\nYou've found the word\nThe word was: "+word_to_guess+"\n\n", "Green")
 	} else {
 		DisplayHangman(numberError)
-		DisplayModLetter(slice_byte_hidden, display_mod, templates_names)
+		DisplayModLetter(slice_byte_hidden, display_mode, templates_names)
 		PrintColor("\nYou didn't find the word !\nThe word was: "+word_to_guess+"\n\n", "Red")
 	}
 	//loop to ask the player to keep playing or not
@@ -130,7 +130,7 @@ func Game(lists_words []string, display_mod string, templates_names map[string]s
 			Clear()
 			PrintColor("Starting new game...", "White")
 			time.Sleep(1 * time.Second)
-			Game(lists_words, display_mod, templates_names)
+			Game(lists_words, display_mode, templates_names)
 		} else if input == "q" {
 			Clear()
 			PrintColor("Thanks for playing !", "White")

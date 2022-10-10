@@ -26,7 +26,7 @@ func Engine(lists_words []string) {
 		fmt.Scanln(&input) // get the input player
 		if input == "s" {
 			Clear()
-			MenuMod(lists_words) // calls the menumod function
+			MenuMode(lists_words) // calls the menumod function
 		} else if input == "q" {
 			Clear()
 			PrintColor("Thanks for Playing !\n", "White")
