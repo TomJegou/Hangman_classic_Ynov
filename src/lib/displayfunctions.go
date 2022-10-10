@@ -4,6 +4,9 @@ import (
 	"strconv"
 )
 
+/*
+Function that display the word in normal mod
+*/
 func DisplayClassic(t []byte) {
 	currentStateWord := ""
 	for i := 0; i < len(t); i++ {
