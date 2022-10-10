@@ -64,7 +64,7 @@ func DisplayModLetter(t []byte, template_mod string) {
 		"2": "thinkertoy"}
 	for i := 1; i <= 9; i++ { // loop each line
 		l := ""                       // store line
-		for j := 0; j < len(t); j++ { // loop for each caracter
+		for j := 0; j < len(t); j++ { // loop for each character
 			l += GetFileInLine("../Templates/" + template_name[template_mod] + ".txt")[297+i+Getpositioninalphabet(t[j])*9]
 			if j != len(t)-1 {
 				l += GetFileInLine("../Templates/" + template_name[template_mod] + ".txt")[i] // add a space after the letter except the last one
