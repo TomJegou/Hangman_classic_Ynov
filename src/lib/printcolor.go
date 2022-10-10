@@ -6,6 +6,7 @@ import "fmt"
 Function used to print texts in color
 We use the ANSI Escape Sequences
 */
+
 func PrintColor(s, color string) {
 	color_map := map[string]string{ //map to store the corresponding color's ansi code
 		"Black":  "\033[0;30m",
