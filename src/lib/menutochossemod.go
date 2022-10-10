@@ -22,7 +22,7 @@ func MenuMod(lists_words []string) {
 		PrintColor("[0]Classique\n", "Blue")
 		PrintColor("[1]Ascii\n", "White")
 		PrintColor("[2]Stick\n", "Purple")
-		PrintColor("[3]ShadowAscii\n", "White")
+		PrintColor("[3]ShadowAscii\n", "Cyan")
 		PrintColor("[4]Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input)
