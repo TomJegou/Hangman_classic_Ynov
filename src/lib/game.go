@@ -9,16 +9,17 @@ import (
 
 func Game(lists_words []string, display_mod string) {
 	Clear()
-	debug_mod := false
+	debug_mod := false // Boolean to activate the debug mod
 	maxError := 10
 	numberError := 0
 	word_to_guess := ChoseRandomWord(lists_words)
 	hiddenWord := ""
 	sliceAllChar := []string{}
 	inputHistory := []string{}
-	for i := 0; i < len(word_to_guess); i++ {
+	for i := 0; i < len(word_to_guess); i++ { // append all charcater into a slice in order to be read by the Isin function
 		sliceAllChar = append(sliceAllChar, string(word_to_guess[i]))
 	}
+	// the programm will reveal n random letters in the word, where n is the len(word) / 2 - 1
 	numberLetterRevealed := len(word_to_guess)/2 - 1
 	for i := 0; i < len(word_to_guess); i++ {
 		hiddenWord += "_"
@@ -29,8 +30,9 @@ func Game(lists_words []string, display_mod string) {
 		DiscoverLetter(slice_byte_hidden, string(word_to_guess[indexLetterRevealed]), word_to_guess)
 		inputHistory, _ = Checktwice(string(word_to_guess[indexLetterRevealed]), inputHistory)
 	}
+	// Create a slice of the remaining letter to guess
 	remainLetter := RemainingLetter(slice_byte_hidden, word_to_guess)
-	found := true
+	found := true //boolean wich determine if the player found the word
 	var input string
 	attempt_number := 0
 	invalid_ouput := false
@@ -43,7 +45,7 @@ func Game(lists_words []string, display_mod string) {
 			PrintColor("attempts.\n\n", "White")
 		}
 		attempt_number++
-		if debug_mod {
+		if debug_mod { // output usefull variables in case of debug mod
 			fmt.Println("Word to find: " + word_to_guess)
 			fmt.Printf("Number error max: %v\n", maxError)
 			fmt.Printf("Number error: %v\n", numberError)
@@ -74,7 +76,8 @@ func Game(lists_words []string, display_mod string) {
 			DisplayHangman(numberError)
 		}
 		DisplayModLetter(slice_byte_hidden, display_mod)
-		fmt.Scanln(&input)
+		fmt.Scanln(&input) // get the intput player
+		// check the input validity
 		if len(input) < 1 {
 			numberError++
 			invalid_ouput = true
@@ -93,14 +96,16 @@ func Game(lists_words []string, display_mod string) {
 			invalid_ouput = true
 			continue
 		}
+		//check if the input as been already played
 		inputHistory, twice = Checktwice(input, inputHistory)
-		if IsIn(sliceAllChar, input) && IsIn(remainLetter, input) {
-			DiscoverLetter(slice_byte_hidden, input, word_to_guess)
-			remainLetter = RemainingLetter(slice_byte_hidden, word_to_guess)
+		if IsIn(sliceAllChar, input) && IsIn(remainLetter, input) { // in case of good answer
+			DiscoverLetter(slice_byte_hidden, input, word_to_guess)          // reveal the letter
+			remainLetter = RemainingLetter(slice_byte_hidden, word_to_guess) // reffresh the slice of remanig letter
 		} else {
 			numberError++
 		}
 	}
+	// Display endgame message
 	if found {
 		Clear()
 		DisplayHangman(numberError)
@@ -111,6 +116,7 @@ func Game(lists_words []string, display_mod string) {
 		DisplayModLetter(slice_byte_hidden, display_mod)
 		PrintColor("\nYou didn't find the word !\nThe word was: "+word_to_guess+"\n\n", "Red")
 	}
+	//loop to ask the player to keep playing or not
 	loop := true
 	for loop {
 		if invalid_ouput {
