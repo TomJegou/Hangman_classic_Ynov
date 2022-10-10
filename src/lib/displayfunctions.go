@@ -6,6 +6,7 @@ import (
 
 /*
 Function that display the word in normal mod
+it takes as parameter a table of bytes
 */
 func DisplayClassic(t []byte) {
 	currentStateWord := ""
