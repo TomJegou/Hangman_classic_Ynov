@@ -37,6 +37,10 @@ func DisplayHangman(numberError int) {
 	}
 }
 
+/*
+Function that displays a message in case of incorrect letter
+*/
+
 func DisplayWrongLetter(numberError, maxError int) {
 	PrintColor("Not present in the word, ", "White")
 	PrintColor(strconv.Itoa(maxError-numberError), "Red")
