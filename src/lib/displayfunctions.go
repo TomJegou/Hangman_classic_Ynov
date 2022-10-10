@@ -5,9 +5,10 @@ import (
 )
 
 /*
-Function that display the word in normal mod
+Function that displays the word in normal mod
 it takes as parameter a table of bytes
 */
+
 func DisplayClassic(t []byte) {
 	currentStateWord := ""
 	for i := 0; i < len(t); i++ {
@@ -20,6 +21,10 @@ func DisplayClassic(t []byte) {
 	PrintColor(currentStateWord+"\n", "White")
 	PrintColor("Choose: ", "White")
 }
+
+/*
+Function that displays the current state of the hangman according to the number of error
+*/
 
 func DisplayHangman(numberError int) {
 	file := GetFileInLine("../Templates/hangman.txt")
