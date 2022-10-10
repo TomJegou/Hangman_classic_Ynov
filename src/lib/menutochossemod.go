@@ -5,6 +5,10 @@ import (
 	"time"
 )
 
+/*
+Displays Menu to choose the diplay Mod and start the game
+*/
+
 func MenuMod(lists_words []string) {
 	var input string
 	loop := true
