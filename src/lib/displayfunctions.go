@@ -59,16 +59,13 @@ func DisplayModLetter(t []byte, template_mod string) {
 		DisplayClassic(t)
 		return
 	}
-	template_name := map[string]string{ // it's a map used to contain the template mod as key and the template's name as value
-		"1": "standard",
-		"2": "thinkertoy",
-		"3": "shadow"}
+	template_name := Scandir("../Templates/policies/")
 	for i := 1; i <= 9; i++ { // loop each line
 		l := ""                       // store line
 		for j := 0; j < len(t); j++ { // loop for each character
-			l += GetFileInLine("../Templates/polices" + template_name[template_mod] + ".txt")[297+i+Getpositioninalphabet(t[j])*9]
+			l += GetFileInLine("../Templates/policies/" + template_name[template_mod] + ".txt")[297+i+Getpositioninalphabet(t[j])*9]
 			if j != len(t)-1 {
-				l += GetFileInLine("../Templates/polices" + template_name[template_mod] + ".txt")[i] // add a space after the letter except the last one
+				l += GetFileInLine("../Templates/policies/" + template_name[template_mod] + ".txt")[i] // add a space after the letter except the last one
 			}
 		}
 		PrintColor(l+"\n", "White")
