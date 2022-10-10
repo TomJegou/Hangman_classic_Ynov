@@ -4,9 +4,13 @@ import (
 	"fmt"
 )
 
+/*
+Function Engine is the main loop for the hangman game
+*/
+
 func Engine(lists_words []string) {
 	Clear()
-	var input string
+	var input string // Store the input player
 	keep_playing := true
 	invalid_ouput := false
 	for keep_playing {
@@ -19,10 +23,10 @@ func Engine(lists_words []string) {
 		}
 		PrintColor("[q] quit\n[s] start new game\n\n", "White") // change print
 		PrintColor("Choose: ", "White")
-		fmt.Scanln(&input)
+		fmt.Scanln(&input) // get the input player
 		if input == "s" {
 			Clear()
-			MenuMod(lists_words)
+			MenuMod(lists_words) // calls the menumod function
 		} else if input == "q" {
 			Clear()
 			PrintColor("Thanks for Playing !\n", "White")
