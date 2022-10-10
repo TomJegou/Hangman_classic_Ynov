@@ -27,7 +27,7 @@ Function that displays the current state of the hangman according to the number 
 */
 
 func DisplayHangman(numberError int) {
-	file := GetFileInLine("../Templates/hangman.txt")
+	file := GetFileInLine("../Templates/hangman/hangman.txt")
 	for i := 0; i < 8; i++ {
 		if i != 7 {
 			PrintColor(file[i+(numberError-1)*8]+"\n", "White")
@@ -66,9 +66,9 @@ func DisplayModLetter(t []byte, template_mod string) {
 	for i := 1; i <= 9; i++ { // loop each line
 		l := ""                       // store line
 		for j := 0; j < len(t); j++ { // loop for each character
-			l += GetFileInLine("../Templates/" + template_name[template_mod] + ".txt")[297+i+Getpositioninalphabet(t[j])*9]
+			l += GetFileInLine("../Templates/polices" + template_name[template_mod] + ".txt")[297+i+Getpositioninalphabet(t[j])*9]
 			if j != len(t)-1 {
-				l += GetFileInLine("../Templates/" + template_name[template_mod] + ".txt")[i] // add a space after the letter except the last one
+				l += GetFileInLine("../Templates/polices" + template_name[template_mod] + ".txt")[i] // add a space after the letter except the last one
 			}
 		}
 		PrintColor(l+"\n", "White")
