@@ -47,23 +47,30 @@ func DisplayWrongLetter(numberError, maxError int) {
 	PrintColor(" attempts remaining\n", "White")
 }
 
+/*
+function that displays the word according to the template mod
+* 0: classic mod
+* 1: standard mod
+* 2: thinkertoy mod
+*/
+
 func DisplayModLetter(t []byte, template_mod string) {
-	if template_mod == "0" {
+	if template_mod == "0" { //if it's classic mod, calls the classicdisplay function
 		DisplayClassic(t)
 		return
 	}
-	template_name := map[string]string{
+	template_name := map[string]string{ // it's a map used to contain the template mod as key and the template's name as value
 		"1": "standard",
 		"2": "thinkertoy"}
-	for i := 1; i <= 9; i++ {
-		l := ""
-		for j := 0; j < len(t); j++ {
+	for i := 1; i <= 9; i++ { // loop each line
+		l := ""                       // store line
+		for j := 0; j < len(t); j++ { // loop for each caracter
 			l += GetFileInLine("../Templates/" + template_name[template_mod] + ".txt")[297+i+Getpositioninalphabet(t[j])*9]
 			if j != len(t)-1 {
-				l += GetFileInLine("../Templates/" + template_name[template_mod] + ".txt")[i]
+				l += GetFileInLine("../Templates/" + template_name[template_mod] + ".txt")[i] // add a space after the letter except the last one
 			}
 		}
 		PrintColor(l+"\n", "White")
 	}
-	PrintColor("Choose: ", "White")
+	PrintColor("Choose: ", "White") //Input display
 }
