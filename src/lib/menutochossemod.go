@@ -22,13 +22,14 @@ func MenuMod(lists_words []string) {
 		PrintColor("[0]Classique\n", "Blue")
 		PrintColor("[1]Ascii\n", "White")
 		PrintColor("[2]Stick\n", "Purple")
-		PrintColor("[3]Back\n\n", "Red")
+		PrintColor("[3]ShadowAscii\n", "White")
+		PrintColor("[4]Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input)
-		if input == "3" {
+		if input == "4" {
 			loop = false
 			Clear()
-		} else if input != "0" && input != "1" && input != "2" {
+		} else if input != "0" && input != "1" && input != "2" && input != "3" {
 			invalid_ouput = true
 			Clear()
 		} else {

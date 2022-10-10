@@ -61,7 +61,8 @@ func DisplayModLetter(t []byte, template_mod string) {
 	}
 	template_name := map[string]string{ // it's a map used to contain the template mod as key and the template's name as value
 		"1": "standard",
-		"2": "thinkertoy"}
+		"2": "thinkertoy",
+		"3": "shadow"}
 	for i := 1; i <= 9; i++ { // loop each line
 		l := ""                       // store line
 		for j := 0; j < len(t); j++ { // loop for each character
