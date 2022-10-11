@@ -7,11 +7,11 @@ import (
 
 type Save struct {
 	Debug                                                bool
-	NumberError, MaxError, Attempt_number                int
+	NumberError, MaxError, AttemptNumber                 int
 	InputHistory, SliceAllChar, ListsWords, RemainLetter []string
 	CurrentStateWord                                     []byte
 	WordToGess, DisplayMode                              string
-	TemplatesNames                                       map[string]string
+	TemplatesNames, DictionnaryNames                     map[string]string
 }
 
 func LoadSave() Save {
@@ -29,5 +29,5 @@ func SaveGame(save Save) {
 	if err != nil {
 		PrintColor("Faild to save the game", "Red")
 	}
-	os.WriteFile("save/save.json", byteValue, 0644)
+	os.WriteFile("saves/save.json", byteValue, 0644)
 }
