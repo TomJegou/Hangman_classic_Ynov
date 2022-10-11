@@ -37,7 +37,7 @@ func MenuMode(save Save) {
 			Clear()
 			PrintColor("Starting game...", "White")
 			time.Sleep(1 * time.Second)
-			save.DisplayMod = save.TemplatesNames[input]
+			save.DisplayMode = save.TemplatesNames[input]
 			Game(save) // Call the function Game
 		}
 	}
