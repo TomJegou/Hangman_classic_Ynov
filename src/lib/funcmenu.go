@@ -89,10 +89,10 @@ func MenuSave() {
 			PrintColor("Hum it seems that there is a save, would you like to load it? Y/n: ", "white")
 		}
 		fmt.Scanln(&input) // get the input player
-		if input == "y" {
-			PrintColor("En construction", "White")
-		} else if input == "n" {
-			PrintColor("En construction", "White")
+		if input == "y" || input == "Y" {
+			LoadSave()
+		} else if input == "n" || input == "N" {
+			Engine()
 		} else {
 			invalid_ouput = true
 		}
