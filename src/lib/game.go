@@ -149,6 +149,7 @@ func Game(save *Save, new bool) {
 		} else if input == "b" {
 			Clear()
 			loop = false
+			ResetWordFromSave(save)
 		} else {
 			Clear()
 			invalid_ouput = true
