@@ -2,6 +2,7 @@ package lib
 
 import (
 	"fmt"
+	"strings"
 )
 
 /*
@@ -26,6 +27,7 @@ func Engine() {
 		PrintColor("\n[q]: quit\n\n", "Red") // change print
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input) // get the input player
+		input = strings.ToLower(input)
 		if input == "s" {
 			Clear()
 			MenuDic(save) // calls the menu function
