@@ -10,7 +10,7 @@ Displays Menu to choose the diplay Mod and start the game
 */
 
 func MenuMode(lists_words []string) {
-	templates_names := Scandir("../Templates/policies/")
+	templates_names := Scandir("../Templates/policies/") // Get the map of all templates policies as value and an index as key
 	var input string
 	loop := true
 	invalid_ouput := false
@@ -21,21 +21,21 @@ func MenuMode(lists_words []string) {
 		}
 		PrintColor("Choose your mode\n\n", "White")
 		PrintColor("[0]: Classique\n", "White")
-		keys := Listmap(templates_names)
+		keys := Listmap(templates_names) // Get the key list in order to check if the next input is valid
 		PrintColor("[b]: Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
-		fmt.Scanln(&input)
+		fmt.Scanln(&input) // Scan and store the user input into the variable input
 		if input == "b" {
 			loop = false
 			Clear()
-		} else if !IsIn(keys, input) && input != "0" {
+		} else if !IsIn(keys, input) && input != "0" { // check the input validity
 			invalid_ouput = true
 			Clear()
 		} else {
 			Clear()
 			PrintColor("Starting game...", "White")
 			time.Sleep(1 * time.Second)
-			Game(lists_words, input, templates_names)
+			Game(lists_words, input, templates_names) // Call the function Game
 		}
 	}
 }

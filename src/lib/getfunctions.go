@@ -6,10 +6,6 @@ import (
 )
 
 /*
-File that contains all the get functions
-*/
-
-/*
 Function that open a file and return a slice of all lines
 */
 

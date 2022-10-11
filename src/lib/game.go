@@ -7,6 +7,10 @@ import (
 	"time"
 )
 
+/*
+Game function, main loop of the game with all the settings already set by the player before the function call
+*/
+
 func Game(lists_words []string, display_mode string, templates_names map[string]string) {
 	Clear()
 	debug_mod := false // Boolean to activate the debug mod
