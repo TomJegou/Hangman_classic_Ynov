@@ -21,7 +21,8 @@ func Engine() {
 		} else {
 			PrintColor("Welcome to Classic_Hangman made by jtom and rlouis !\n\n", "white")
 		}
-		PrintColor("[q] quit\n[s] start new game\n\n", "White") // change print
+		PrintColor("[s]: Start new game", "Green")
+		PrintColor("\n[q]: quit\n\n", "Red") // change print
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input) // get the input player
 		if input == "s" {
