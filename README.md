@@ -28,5 +28,5 @@ mkdir bin && cd src && go build -o ../bin/classic_hangman main.go && cd ..
 Start the application
 
 ```
-cd src && ./../bin/classic_hangman [dictionnary_name] && cd ..
+cd src && ./../bin/classic_hangman && cd ..
 ```
