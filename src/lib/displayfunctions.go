@@ -58,17 +58,17 @@ function that displays the word according to the template mod
 * 2: thinkertoy mod
 */
 
-func DisplayModLetter(t []byte, template_mode string, template_names map[string]string) {
-	if template_mode == "0" { //if it's classic mod, calls the classicdisplay function
-		DisplayClassic(t)
+func DisplayModLetter(save Save) {
+	if save.DisplayMode == "0" { //if it's classic mod, calls the classicdisplay function
+		DisplayClassic(save.CurrentStateWord)
 		return
 	}
 	for i := 1; i <= 9; i++ { // loop each line
-		l := ""                       // store line
-		for j := 0; j < len(t); j++ { // loop for each character
-			l += GetFileInLine("../Templates/policies/" + template_names[template_mode] + ".txt")[297+i+Getpositioninalphabet(t[j])*9]
-			if j != len(t)-1 {
-				l += GetFileInLine("../Templates/policies/" + template_names[template_mode] + ".txt")[i] // add a space after the letter except the last one
+		l := ""                                           // store line
+		for j := 0; j < len(save.CurrentStateWord); j++ { // loop for each character
+			l += GetFileInLine("../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt")[297+i+Getpositioninalphabet(save.CurrentStateWord[j])*9]
+			if j != len(save.CurrentStateWord)-1 {
+				l += GetFileInLine("../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt")[i] // add a space after the letter except the last one
 			}
 		}
 		PrintColor(l+"\n", "White")
