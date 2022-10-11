@@ -11,9 +11,15 @@ import (
 Game function, main loop of the game with all the settings already set by the player before the function call
 */
 
-func Game(save Save) {
+func Game(save Save, new bool) {
 	Clear()
-	save.WordToGess = ChoseRandomWord(save.ListsWords)
+	if new {
+		save.AttemptNumber = 0
+		save.NumberError = 0
+		save.SliceAllChar = []string{}
+		save.InputHistory = []string{}
+		save.WordToGess = ChoseRandomWord(save.ListsWords)
+	}
 	hiddenWord := ""
 	for i := 0; i < len(save.WordToGess); i++ { // append all charcater into a slice in order to be read by the Isin function
 		save.SliceAllChar = append(save.SliceAllChar, string(save.WordToGess[i]))
@@ -33,7 +39,6 @@ func Game(save Save) {
 	save.RemainLetter = RemainingLetter(save.CurrentStateWord, save.WordToGess)
 	found := true //boolean wich determine if the player found the word
 	var input string
-	attempt_number := 0
 	invalid_ouput := false
 	twice := false
 	for len(save.RemainLetter) > 0 {
@@ -43,12 +48,12 @@ func Game(save Save) {
 			PrintColor("10 ", "Green")
 			PrintColor("attempts.\n\n", "White")
 		}
-		attempt_number++
+		save.AttemptNumber++
 		if save.Debug { // output usefull variables in case of debug mod
 			fmt.Println("Word to find: " + save.WordToGess)
 			fmt.Printf("Number error max: %v\n", save.MaxError)
 			fmt.Printf("Number error: %v\n", save.NumberError)
-			fmt.Printf("Attempt number: %v\n", attempt_number)
+			fmt.Printf("Attempt number: %v\n", save.AttemptNumber)
 			if len(save.InputHistory) > 0 {
 				fmt.Print("Input history")
 				fmt.Println(save.InputHistory)
@@ -74,7 +79,7 @@ func Game(save Save) {
 			}
 			DisplayHangman(save.NumberError)
 		}
-		DisplayModLetter(save.CurrentStateWord, save.DisplayMode, save.TemplatesNames)
+		DisplayModLetter(save)
 		fmt.Scanln(&input) // get the intput player
 		// check the input validity
 		if len(input) < 1 {
@@ -103,6 +108,7 @@ func Game(save Save) {
 		} else {
 			save.NumberError++
 		}
+		SaveGame(save)
 	}
 	// Display endgame message
 	if found {
@@ -110,11 +116,11 @@ func Game(save Save) {
 		if save.NumberError > 0 {
 			DisplayHangman(save.NumberError)
 		}
-		DisplayModLetter(save.CurrentStateWord, save.DisplayMode, save.TemplatesNames)
+		DisplayModLetter(save)
 		PrintColor("\nCongrat !\nYou've found the word\nThe word was: "+save.WordToGess+"\n\n", "Green")
 	} else {
 		DisplayHangman(save.NumberError)
-		DisplayModLetter(save.CurrentStateWord, save.DisplayMode, save.TemplatesNames)
+		DisplayModLetter(save)
 		PrintColor("\nYou didn't find the word !\nThe word was: "+save.WordToGess+"\n\n", "Red")
 	}
 	//loop to ask the player to keep playing or not
@@ -131,7 +137,7 @@ func Game(save Save) {
 			Clear()
 			PrintColor("Starting new game...", "White")
 			time.Sleep(1 * time.Second)
-			Game(save)
+			Game(save, true)
 		} else if input == "q" {
 			Clear()
 			PrintColor("Thanks for playing !", "White")
