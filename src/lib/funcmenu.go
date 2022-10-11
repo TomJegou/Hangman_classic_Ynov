@@ -26,6 +26,7 @@ func MenuMode(save Save) {
 		PrintColor("[b]: Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input) // Scan and store the user input into the variable input
+		input = strings.ToLower(input)
 		if input == "b" {
 			loop = false
 			Clear()
@@ -61,6 +62,7 @@ func MenuDic(save Save) {
 		PrintColor("[b]: Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input)
+		input = strings.ToLower(input)
 		if input == "b" {
 			loop = false
 			Clear()
