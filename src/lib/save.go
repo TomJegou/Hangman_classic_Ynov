@@ -27,6 +27,29 @@ func LoadSave() (Save, error) {
 	return save, err
 }
 
-func SaveGame() {
-
+func SaveGame(
+	numberError int,
+	maxError int,
+	inputHistory []string,
+	currentStateWord []byte,
+	wordToGess string,
+	displayMod string,
+	listsWords []string,
+	templatesNames map[string]string,
+	sliceAllChar []string,
+	save *Save) {
+	save.NumberError = numberError
+	save.MaxError = maxError
+	save.InputHistory = inputHistory
+	save.CurrentStateWord = currentStateWord
+	save.WordToGess = wordToGess
+	save.DisplayMod = displayMod
+	save.ListsWords = listsWords
+	save.TemplatesNames = templatesNames
+	save.SliceAllChar = sliceAllChar
+	byteValue, err := json.MarshalIndent(save, "", "    ")
+	if err != nil {
+		PrintColor("Faild to save the game", "Red")
+	}
+	os.WriteFile("save/save.json", byteValue, 0644)
 }
