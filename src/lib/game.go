@@ -32,6 +32,7 @@ func Game(save *Save, new bool) {
 		// Create a slice of the remaining letter to guess
 		save.RemainLetter = RemainingLetter(save.CurrentStateWord, save.WordToGess)
 	}
+	SaveGame(save)
 	found := true //boolean wich determine if the player found the word
 	var input string
 	invalid_ouput := false
@@ -77,6 +78,12 @@ func Game(save *Save, new bool) {
 		DisplayModLetter(save)
 		fmt.Scanln(&input) // get the intput player
 		// check the input validity
+		if input == "STOP" {
+			SaveGame(save)
+			Clear()
+			PrintColor("Thanks for playing !", "White")
+			os.Exit(0)
+		}
 		if len(input) < 1 {
 			save.NumberError++
 			invalid_ouput = true
