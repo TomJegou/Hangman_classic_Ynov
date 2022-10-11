@@ -72,7 +72,6 @@ func MenuDic(save Save) {
 		} else {
 			Clear()
 			save.ListsWords = GetFileInLine("../dictionnaries/" + dictionnaries_names[input] + ".txt")
-			save.WordToGess = ChoseRandomWord(save.ListsWords)
 			MenuMode(save)
 		}
 	}
