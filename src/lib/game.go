@@ -11,15 +11,9 @@ import (
 Game function, main loop of the game with all the settings already set by the player before the function call
 */
 
-func Game(lists_words []string, display_mode string, templates_names map[string]string) {
+func Game(save Save) {
 	Clear()
-	debug_mod := false // Boolean to activate the debug mod
-	maxError := 10
-	numberError := 0
-	word_to_guess := ChoseRandomWord(lists_words)
 	hiddenWord := ""
-	sliceAllChar := []string{}
-	inputHistory := []string{}
 	for i := 0; i < len(word_to_guess); i++ { // append all charcater into a slice in order to be read by the Isin function
 		sliceAllChar = append(sliceAllChar, string(word_to_guess[i]))
 	}
