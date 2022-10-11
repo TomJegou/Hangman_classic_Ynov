@@ -13,55 +13,56 @@ Game function, main loop of the game with all the settings already set by the pl
 
 func Game(save Save) {
 	Clear()
+	save.WordToGess = ChoseRandomWord(save.ListsWords)
 	hiddenWord := ""
-	for i := 0; i < len(word_to_guess); i++ { // append all charcater into a slice in order to be read by the Isin function
-		sliceAllChar = append(sliceAllChar, string(word_to_guess[i]))
+	for i := 0; i < len(save.WordToGess); i++ { // append all charcater into a slice in order to be read by the Isin function
+		save.SliceAllChar = append(save.SliceAllChar, string(save.WordToGess[i]))
 	}
 	// the programm will reveal n random letters in the word, where n is the len(word) / 2 - 1
-	numberLetterRevealed := len(word_to_guess)/2 - 1
-	for i := 0; i < len(word_to_guess); i++ {
+	numberLetterRevealed := len(save.WordToGess)/2 - 1
+	for i := 0; i < len(save.WordToGess); i++ {
 		hiddenWord += "_"
 	}
-	slice_byte_hidden := []byte(hiddenWord)
+	save.CurrentStateWord = []byte(hiddenWord)
 	for i := 0; i < numberLetterRevealed; i++ {
-		indexLetterRevealed := rand.New(rand.NewSource(time.Now().UnixNano())).Intn(len(slice_byte_hidden))
-		DiscoverLetter(slice_byte_hidden, string(word_to_guess[indexLetterRevealed]), word_to_guess)
-		inputHistory, _ = Checktwice(string(word_to_guess[indexLetterRevealed]), inputHistory)
+		indexLetterRevealed := rand.New(rand.NewSource(time.Now().UnixNano())).Intn(len(save.CurrentStateWord))
+		DiscoverLetter(save.CurrentStateWord, string(save.WordToGess[indexLetterRevealed]), save.WordToGess)
+		save.InputHistory, _ = Checktwice(string(save.WordToGess[indexLetterRevealed]), save.InputHistory)
 	}
 	// Create a slice of the remaining letter to guess
-	remainLetter := RemainingLetter(slice_byte_hidden, word_to_guess)
+	save.RemainLetter = RemainingLetter(save.CurrentStateWord, save.WordToGess)
 	found := true //boolean wich determine if the player found the word
 	var input string
 	attempt_number := 0
 	invalid_ouput := false
 	twice := false
-	for len(remainLetter) > 0 {
+	for len(save.RemainLetter) > 0 {
 		Clear()
-		if numberError == 0 {
+		if save.NumberError == 0 {
 			PrintColor("Good Luck, you have ", "White")
 			PrintColor("10 ", "Green")
 			PrintColor("attempts.\n\n", "White")
 		}
 		attempt_number++
-		if debug_mod { // output usefull variables in case of debug mod
-			fmt.Println("Word to find: " + word_to_guess)
-			fmt.Printf("Number error max: %v\n", maxError)
-			fmt.Printf("Number error: %v\n", numberError)
+		if save.Debug { // output usefull variables in case of debug mod
+			fmt.Println("Word to find: " + save.WordToGess)
+			fmt.Printf("Number error max: %v\n", save.MaxError)
+			fmt.Printf("Number error: %v\n", save.NumberError)
 			fmt.Printf("Attempt number: %v\n", attempt_number)
-			if len(inputHistory) > 0 {
+			if len(save.InputHistory) > 0 {
 				fmt.Print("Input history")
-				fmt.Println(inputHistory)
+				fmt.Println(save.InputHistory)
 			}
 			if len(input) > 0 {
 				fmt.Println("Last input player: " + input)
 			}
 			fmt.Println()
 		}
-		if numberError >= maxError {
+		if save.NumberError >= save.MaxError {
 			found = false
 			break
 		}
-		if numberError > 0 {
+		if save.NumberError > 0 {
 			if invalid_ouput {
 				PrintColor("Invalid input, only one alphabetical character is supported as entry\n", "White")
 				invalid_ouput = false
@@ -69,52 +70,52 @@ func Game(save Save) {
 				PrintColor("Already try this letter\n", "White")
 				twice = false
 			} else {
-				DisplayWrongLetter(numberError, maxError)
+				DisplayWrongLetter(save.NumberError, save.MaxError)
 			}
-			DisplayHangman(numberError)
+			DisplayHangman(save.NumberError)
 		}
-		DisplayModLetter(slice_byte_hidden, display_mode, templates_names)
+		DisplayModLetter(save.CurrentStateWord, save.DisplayMode, save.TemplatesNames)
 		fmt.Scanln(&input) // get the intput player
 		// check the input validity
 		if len(input) < 1 {
-			numberError++
+			save.NumberError++
 			invalid_ouput = true
 			continue
 		}
 		if len(input) > 1 {
-			if input == word_to_guess {
+			if input == save.WordToGess {
 				break
 			} else {
-				numberError += 2
+				save.NumberError += 2
 				continue
 			}
 		}
 		if input >= "0" && input <= "9" {
-			numberError++
+			save.NumberError++
 			invalid_ouput = true
 			continue
 		}
 		//check if the input as been already played
-		inputHistory, twice = Checktwice(input, inputHistory)
-		if IsIn(sliceAllChar, input) && IsIn(remainLetter, input) { // in case of good answer
-			DiscoverLetter(slice_byte_hidden, input, word_to_guess)          // reveal the letter
-			remainLetter = RemainingLetter(slice_byte_hidden, word_to_guess) // reffresh the slice of remanig letter
+		save.InputHistory, twice = Checktwice(input, save.InputHistory)
+		if IsIn(save.SliceAllChar, input) && IsIn(save.RemainLetter, input) { // in case of good answer
+			DiscoverLetter(save.CurrentStateWord, input, save.WordToGess)               // reveal the letter
+			save.RemainLetter = RemainingLetter(save.CurrentStateWord, save.WordToGess) // reffresh the slice of remanig letter
 		} else {
-			numberError++
+			save.NumberError++
 		}
 	}
 	// Display endgame message
 	if found {
 		Clear()
-		if numberError > 0 {
-			DisplayHangman(numberError)
+		if save.NumberError > 0 {
+			DisplayHangman(save.NumberError)
 		}
-		DisplayModLetter(slice_byte_hidden, display_mode, templates_names)
-		PrintColor("\nCongrat !\nYou've found the word\nThe word was: "+word_to_guess+"\n\n", "Green")
+		DisplayModLetter(save.CurrentStateWord, save.DisplayMode, save.TemplatesNames)
+		PrintColor("\nCongrat !\nYou've found the word\nThe word was: "+save.WordToGess+"\n\n", "Green")
 	} else {
-		DisplayHangman(numberError)
-		DisplayModLetter(slice_byte_hidden, display_mode, templates_names)
-		PrintColor("\nYou didn't find the word !\nThe word was: "+word_to_guess+"\n\n", "Red")
+		DisplayHangman(save.NumberError)
+		DisplayModLetter(save.CurrentStateWord, save.DisplayMode, save.TemplatesNames)
+		PrintColor("\nYou didn't find the word !\nThe word was: "+save.WordToGess+"\n\n", "Red")
 	}
 	//loop to ask the player to keep playing or not
 	loop := true
@@ -130,7 +131,7 @@ func Game(save Save) {
 			Clear()
 			PrintColor("Starting new game...", "White")
 			time.Sleep(1 * time.Second)
-			Game(lists_words, display_mode, templates_names)
+			Game(save)
 		} else if input == "q" {
 			Clear()
 			PrintColor("Thanks for playing !", "White")
