@@ -28,6 +28,10 @@ Function that displays the current state of the hangman according to the number 
 
 func DisplayHangman(numberError int) {
 	file := GetFileInLine("../Templates/hangman/hangman.txt")
+	if numberError > 10 {
+		DisplayHangman(10)
+		return
+	}
 	for i := 0; i < 8; i++ {
 		if i != 7 {
 			PrintColor(file[i+(numberError-1)*8]+"\n", "White")
