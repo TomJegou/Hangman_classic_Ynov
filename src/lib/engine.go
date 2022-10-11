@@ -10,6 +10,7 @@ Function Engine is the main loop for the hangman game
 
 func Engine() {
 	Clear()
+	save := Save{MaxError: 10, NumberError: 0, Attempt_number: 0, Debug: false}
 	var input string // Store the input player
 	keep_playing := true
 	invalid_ouput := false
@@ -27,7 +28,7 @@ func Engine() {
 		fmt.Scanln(&input) // get the input player
 		if input == "s" {
 			Clear()
-			MenuDic() // calls the menu function
+			MenuDic(save) // calls the menu function
 		} else if input == "q" {
 			Clear()
 			PrintColor("Thanks for Playing !\n", "White")
