@@ -58,7 +58,7 @@ function that displays the word according to the template mod
 * 2: thinkertoy mod
 */
 
-func DisplayModLetter(save Save) {
+func DisplayModLetter(save *Save) {
 	if save.DisplayMode == "0" { //if it's classic mod, calls the classicdisplay function
 		DisplayClassic(save.CurrentStateWord)
 		return

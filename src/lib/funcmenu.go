@@ -10,7 +10,7 @@ import (
 Displays Menu to choose the diplay Mod and start the game
 */
 
-func MenuMode(save Save) {
+func MenuMode(save *Save) {
 	save.TemplatesNames = Scandir("../Templates/policies/") // Get the map of all templates policies as value and an index as key
 	var input string
 	loop := true
@@ -47,7 +47,7 @@ func MenuMode(save Save) {
 Displays Menu to choose a dictionnary
 */
 
-func MenuDic(save Save) {
+func MenuDic(save *Save) {
 	save.DictionnaryNames = Scandir("../dictionnaries/")
 	var input string
 	loop := true
@@ -72,6 +72,7 @@ func MenuDic(save Save) {
 		} else {
 			Clear()
 			save.ListsWords = GetFileInLine("../dictionnaries/" + save.DictionnaryNames[input] + ".txt")
+			save.WordToGess = ChoseRandomWord(save.ListsWords)
 			MenuMode(save)
 		}
 	}

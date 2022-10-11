@@ -14,8 +14,8 @@ type Save struct {
 	TemplatesNames, DictionnaryNames                     map[string]string
 }
 
-func LoadSave() Save {
-	var save Save
+func LoadSave() *Save {
+	save := &Save{}
 	bytevalue, err := os.ReadFile("saves/save.json")
 	if err != nil {
 		return save
@@ -24,10 +24,18 @@ func LoadSave() Save {
 	return save
 }
 
-func SaveGame(save Save) {
+func SaveGame(save *Save) {
 	byteValue, err := json.MarshalIndent(save, "", "    ")
 	if err != nil {
 		PrintColor("Faild to save the game", "Red")
 	}
 	os.WriteFile("saves/save.json", byteValue, 0644)
+}
+
+func ResetWordFromSave(save *Save) {
+	save.AttemptNumber = 0
+	save.NumberError = 0
+	save.SliceAllChar = []string{}
+	save.InputHistory = []string{}
+	save.WordToGess = ChoseRandomWord(save.ListsWords)
 }

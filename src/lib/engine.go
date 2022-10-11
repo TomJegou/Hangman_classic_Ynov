@@ -11,7 +11,7 @@ Function Engine is the main loop for the hangman game
 
 func Engine() {
 	Clear()
-	save := Save{MaxError: 10, Debug: false}
+	save := &Save{MaxError: 10, Debug: false}
 	var input string // Store the input player
 	keep_playing := true
 	invalid_ouput := false

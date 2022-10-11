@@ -11,32 +11,27 @@ import (
 Game function, main loop of the game with all the settings already set by the player before the function call
 */
 
-func Game(save Save, new bool) {
+func Game(save *Save, new bool) {
 	Clear()
 	if new {
-		save.AttemptNumber = 0
-		save.NumberError = 0
-		save.SliceAllChar = []string{}
-		save.InputHistory = []string{}
-		save.WordToGess = ChoseRandomWord(save.ListsWords)
+		hiddenWord := ""
+		for i := 0; i < len(save.WordToGess); i++ { // append all charcater into a slice in order to be read by the Isin function
+			save.SliceAllChar = append(save.SliceAllChar, string(save.WordToGess[i]))
+		}
+		// the programm will reveal n random letters in the word, where n is the len(word) / 2 - 1
+		numberLetterRevealed := len(save.WordToGess)/2 - 1
+		for i := 0; i < len(save.WordToGess); i++ {
+			hiddenWord += "_"
+		}
+		save.CurrentStateWord = []byte(hiddenWord)
+		for i := 0; i < numberLetterRevealed; i++ {
+			indexLetterRevealed := rand.New(rand.NewSource(time.Now().UnixNano())).Intn(len(save.CurrentStateWord))
+			DiscoverLetter(save.CurrentStateWord, string(save.WordToGess[indexLetterRevealed]), save.WordToGess)
+			save.InputHistory, _ = Checktwice(string(save.WordToGess[indexLetterRevealed]), save.InputHistory)
+		}
+		// Create a slice of the remaining letter to guess
+		save.RemainLetter = RemainingLetter(save.CurrentStateWord, save.WordToGess)
 	}
-	hiddenWord := ""
-	for i := 0; i < len(save.WordToGess); i++ { // append all charcater into a slice in order to be read by the Isin function
-		save.SliceAllChar = append(save.SliceAllChar, string(save.WordToGess[i]))
-	}
-	// the programm will reveal n random letters in the word, where n is the len(word) / 2 - 1
-	numberLetterRevealed := len(save.WordToGess)/2 - 1
-	for i := 0; i < len(save.WordToGess); i++ {
-		hiddenWord += "_"
-	}
-	save.CurrentStateWord = []byte(hiddenWord)
-	for i := 0; i < numberLetterRevealed; i++ {
-		indexLetterRevealed := rand.New(rand.NewSource(time.Now().UnixNano())).Intn(len(save.CurrentStateWord))
-		DiscoverLetter(save.CurrentStateWord, string(save.WordToGess[indexLetterRevealed]), save.WordToGess)
-		save.InputHistory, _ = Checktwice(string(save.WordToGess[indexLetterRevealed]), save.InputHistory)
-	}
-	// Create a slice of the remaining letter to guess
-	save.RemainLetter = RemainingLetter(save.CurrentStateWord, save.WordToGess)
 	found := true //boolean wich determine if the player found the word
 	var input string
 	invalid_ouput := false
@@ -137,6 +132,7 @@ func Game(save Save, new bool) {
 			Clear()
 			PrintColor("Starting new game...", "White")
 			time.Sleep(1 * time.Second)
+			ResetWordFromSave(save)
 			Game(save, true)
 		} else if input == "q" {
 			Clear()
