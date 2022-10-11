@@ -17,14 +17,14 @@ type Save struct {
 	SliceAllChar     []string
 }
 
-func LoadSave() (Save, error) {
+func LoadSave() Save {
 	var save Save
 	bytevalue, err := os.ReadFile("saves/save.json")
 	if err != nil {
-		return save, err
+		return save
 	}
 	json.Unmarshal(bytevalue, &save)
-	return save, err
+	return save
 }
 
 func SaveGame(
