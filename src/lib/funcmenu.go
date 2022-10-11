@@ -91,15 +91,16 @@ func MenuSave() {
 			Clear()
 			PrintColor("Invalid output !\n\n", "White")
 			invalid_ouput = false
-		} else {
-			PrintColor("Hum it seems that there is a save, would you like to load it? Y/n: ", "white")
 		}
+		PrintColor("Hum it seems that there is a save, would you like to load it? Y/n: ", "white")
 		fmt.Scanln(&input) // get the input player
 		input = strings.ToLower(input)
 		if input == "y" {
 			Game(LoadSave(), false)
+			return
 		} else if input == "n" {
 			Engine()
+			return
 		} else {
 			invalid_ouput = true
 		}
