@@ -108,7 +108,9 @@ func Game(lists_words []string, display_mode string, templates_names map[string]
 	// Display endgame message
 	if found {
 		Clear()
-		DisplayHangman(numberError)
+		if numberError > 0 {
+			DisplayHangman(numberError)
+		}
 		DisplayModLetter(slice_byte_hidden, display_mode, templates_names)
 		PrintColor("\nCongrat !\nYou've found the word\nThe word was: "+word_to_guess+"\n\n", "Green")
 	} else {
