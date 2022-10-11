@@ -1,4 +1,3 @@
-* Fixing save bugs
 * Implement a menu to choose multiple saves
 * Implement a menu to name a save
 * Display some ascii
