@@ -40,6 +40,10 @@ func MenuMode(lists_words []string) {
 	}
 }
 
+/*
+Displays Menu to choose a dictionnary
+*/
+
 func MenuDic() {
 	dictionnaries_names := Scandir("../dictionnaries/")
 	var input string
