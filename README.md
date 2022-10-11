@@ -22,7 +22,9 @@ cd Hangman_Classic
 Build the application
 
 ```
-cd src && go build -o ../bin/classic_hangman main.go && cd ..
+cd src 
+go build -o ../bin/classic_hangman main.go 
+cd ..
 ```
 
 Start the application
