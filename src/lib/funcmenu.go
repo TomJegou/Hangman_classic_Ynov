@@ -2,6 +2,7 @@ package lib
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -9,8 +10,8 @@ import (
 Displays Menu to choose the diplay Mod and start the game
 */
 
-func MenuMode(lists_words []string) {
-	templates_names := Scandir("../Templates/policies/") // Get the map of all templates policies as value and an index as key
+func MenuMode(save Save) {
+	save.TemplatesNames = Scandir("../Templates/policies/") // Get the map of all templates policies as value and an index as key
 	var input string
 	loop := true
 	invalid_ouput := false
@@ -21,7 +22,7 @@ func MenuMode(lists_words []string) {
 		}
 		PrintColor("Choose your mode\n\n", "White")
 		PrintColor("[0]: Classique\n", "White")
-		keys := Listmap(templates_names) // Get the key list in order to check if the next input is valid
+		keys := Listmap(save.TemplatesNames) // Get the key list in order to check if the next input is valid
 		PrintColor("[b]: Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input) // Scan and store the user input into the variable input
@@ -35,7 +36,8 @@ func MenuMode(lists_words []string) {
 			Clear()
 			PrintColor("Starting game...", "White")
 			time.Sleep(1 * time.Second)
-			Game(lists_words, input, templates_names) // Call the function Game
+			save.DisplayMod = save.TemplatesNames[input]
+			Game(save) // Call the function Game
 		}
 	}
 }
@@ -44,7 +46,7 @@ func MenuMode(lists_words []string) {
 Displays Menu to choose a dictionnary
 */
 
-func MenuDic() {
+func MenuDic(save Save) {
 	dictionnaries_names := Scandir("../dictionnaries/")
 	var input string
 	loop := true
@@ -67,7 +69,9 @@ func MenuDic() {
 			Clear()
 		} else {
 			Clear()
-			MenuMode(GetFileInLine("../dictionnaries/" + dictionnaries_names[input] + ".txt"))
+			save.ListsWords = GetFileInLine("../dictionnaries/" + dictionnaries_names[input] + ".txt")
+			save.WordToGess = ChoseRandomWord(save.ListsWords)
+			MenuMode(save)
 		}
 	}
 }
@@ -89,9 +93,10 @@ func MenuSave() {
 			PrintColor("Hum it seems that there is a save, would you like to load it? Y/n: ", "white")
 		}
 		fmt.Scanln(&input) // get the input player
-		if input == "y" || input == "Y" {
-			LoadSave()
-		} else if input == "n" || input == "N" {
+		input = strings.ToLower(input)
+		if input == "y" {
+			Game(LoadSave())
+		} else if input == "n" {
 			Engine()
 		} else {
 			invalid_ouput = true
