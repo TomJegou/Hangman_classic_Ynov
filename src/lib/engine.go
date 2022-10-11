@@ -8,7 +8,7 @@ import (
 Function Engine is the main loop for the hangman game
 */
 
-func Engine(lists_words []string) {
+func Engine() {
 	Clear()
 	var input string // Store the input player
 	keep_playing := true
@@ -26,7 +26,7 @@ func Engine(lists_words []string) {
 		fmt.Scanln(&input) // get the input player
 		if input == "s" {
 			Clear()
-			MenuMode(lists_words) // calls the menumod function
+			MenuDic() // calls the menu function
 		} else if input == "q" {
 			Clear()
 			PrintColor("Thanks for Playing !\n", "White")
