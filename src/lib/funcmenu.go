@@ -10,7 +10,11 @@ import (
 Displays Menu to choose the diplay Mod and start the game
 */
 
-func MenuMode(save *Save) {
+func MenuMode(save *Save, issave bool) {
+	if issave {
+		issave = false
+		Game(save, false)
+	}
 	save.TemplatesNames = Scandir("../Templates/policies/") // Get the map of all templates policies as value and an index as key
 	var input string
 	loop := true
@@ -47,7 +51,11 @@ func MenuMode(save *Save) {
 Displays Menu to choose a dictionnary
 */
 
-func MenuDic(save *Save) {
+func MenuDic(save *Save, issave bool) {
+	if issave {
+		issave = false
+		MenuMode(save, true)
+	}
 	save.DictionnaryNames = Scandir("../dictionnaries/")
 	var input string
 	loop := true
@@ -73,7 +81,7 @@ func MenuDic(save *Save) {
 			Clear()
 			save.ListsWords = GetFileInLine("../dictionnaries/" + save.DictionnaryNames[input] + ".txt")
 			save.WordToGess = ChoseRandomWord(save.ListsWords)
-			MenuMode(save)
+			MenuMode(save, false)
 		}
 	}
 }
@@ -96,10 +104,10 @@ func MenuSave() {
 		fmt.Scanln(&input) // get the input player
 		input = strings.ToLower(input)
 		if input == "y" {
-			Game(LoadSave(), false)
+			Engine(true)
 			return
 		} else if input == "n" {
-			Engine()
+			Engine(false)
 			return
 		} else {
 			invalid_ouput = true

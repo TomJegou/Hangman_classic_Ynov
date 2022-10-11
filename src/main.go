@@ -14,6 +14,6 @@ func main() {
 	if err == nil {
 		lib.MenuSave()
 	} else {
-		lib.Engine()
+		lib.Engine(false)
 	}
 }

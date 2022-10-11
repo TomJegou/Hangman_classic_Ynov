@@ -9,9 +9,15 @@ import (
 Function Engine is the main loop for the hangman game
 */
 
-func Engine() {
+func Engine(issave bool) {
 	Clear()
-	save := &Save{MaxError: 10, Debug: false}
+	var save *Save
+	if issave {
+		issave = false
+		MenuDic(LoadSave(), true)
+	} else {
+		save = &Save{MaxError: 10, AttemptNumber: 0, Debug: false}
+	}
 	var input string // Store the input player
 	keep_playing := true
 	invalid_ouput := false
@@ -30,7 +36,7 @@ func Engine() {
 		input = strings.ToLower(input)
 		if input == "s" {
 			Clear()
-			MenuDic(save) // calls the menu function
+			MenuDic(save, false) // calls the menu function
 		} else if input == "q" {
 			Clear()
 			PrintColor("Thanks for Playing !\n", "White")
