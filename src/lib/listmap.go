@@ -4,7 +4,7 @@ import (
 	"sort"
 )
 
-func Listmap(m map[string]string) {
+func Listmap(m map[string]string) []string {
 	keys := []string{}
 	for key := range m {
 		keys = append(keys, key)
@@ -13,4 +13,5 @@ func Listmap(m map[string]string) {
 	for index_key, key := range keys {
 		PrintColor("["+key+"]"+": "+m[keys[index_key]]+"\n", "White")
 	}
+	return keys
 }

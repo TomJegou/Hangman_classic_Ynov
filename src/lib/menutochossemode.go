@@ -21,14 +21,14 @@ func MenuMode(lists_words []string) {
 		}
 		PrintColor("Choose your mode\n\n", "White")
 		PrintColor("[0]: Classique\n", "White")
-		Listmap(templates_names)
+		keys := Listmap(templates_names)
 		PrintColor("[b]: Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input)
 		if input == "b" {
 			loop = false
 			Clear()
-		} else if input != "0" && input != "1" && input != "2" && input != "3" { // Todo: change
+		} else if !IsIn(keys, input) && input != "0" {
 			invalid_ouput = true
 			Clear()
 		} else {
