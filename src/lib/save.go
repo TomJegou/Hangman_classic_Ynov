@@ -6,15 +6,12 @@ import (
 )
 
 type Save struct {
-	NumberError      int
-	MaxError         int
-	InputHistory     []string
-	CurrentStateWord []byte
-	WordToGess       string
-	DisplayMod       string
-	ListsWords       []string
-	TemplatesNames   map[string]string
-	SliceAllChar     []string
+	Debug                                  bool
+	NumberError, MaxError, Attempt_number  int
+	InputHistory, SliceAllChar, ListsWords []string
+	CurrentStateWord                       []byte
+	WordToGess, DisplayMod                 string
+	TemplatesNames                         map[string]string
 }
 
 func LoadSave() Save {
@@ -27,26 +24,7 @@ func LoadSave() Save {
 	return save
 }
 
-func SaveGame(
-	numberError int,
-	maxError int,
-	inputHistory []string,
-	currentStateWord []byte,
-	wordToGess string,
-	displayMod string,
-	listsWords []string,
-	templatesNames map[string]string,
-	sliceAllChar []string,
-	save *Save) {
-	save.NumberError = numberError
-	save.MaxError = maxError
-	save.InputHistory = inputHistory
-	save.CurrentStateWord = currentStateWord
-	save.WordToGess = wordToGess
-	save.DisplayMod = displayMod
-	save.ListsWords = listsWords
-	save.TemplatesNames = templatesNames
-	save.SliceAllChar = sliceAllChar
+func SaveGame(save Save) {
 	byteValue, err := json.MarshalIndent(save, "", "    ")
 	if err != nil {
 		PrintColor("Faild to save the game", "Red")
