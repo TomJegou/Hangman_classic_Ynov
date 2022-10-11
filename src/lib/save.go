@@ -6,12 +6,12 @@ import (
 )
 
 type Save struct {
-	Debug                                  bool
-	NumberError, MaxError, Attempt_number  int
-	InputHistory, SliceAllChar, ListsWords []string
-	CurrentStateWord                       []byte
-	WordToGess, DisplayMod                 string
-	TemplatesNames                         map[string]string
+	Debug                                                bool
+	NumberError, MaxError, Attempt_number                int
+	InputHistory, SliceAllChar, ListsWords, RemainLetter []string
+	CurrentStateWord                                     []byte
+	WordToGess, DisplayMode                              string
+	TemplatesNames                                       map[string]string
 }
 
 func LoadSave() Save {
