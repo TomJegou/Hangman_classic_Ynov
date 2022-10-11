@@ -37,8 +37,8 @@ func MenuMode(save Save) {
 			Clear()
 			PrintColor("Starting game...", "White")
 			time.Sleep(1 * time.Second)
-			save.DisplayMode = save.TemplatesNames[input]
-			Game(save) // Call the function Game
+			save.DisplayMode = input
+			Game(save, true) // Call the function Game
 		}
 	}
 }
@@ -48,7 +48,7 @@ Displays Menu to choose a dictionnary
 */
 
 func MenuDic(save Save) {
-	dictionnaries_names := Scandir("../dictionnaries/")
+	save.DictionnaryNames = Scandir("../dictionnaries/")
 	var input string
 	loop := true
 	invalid_ouput := false
@@ -58,7 +58,7 @@ func MenuDic(save Save) {
 			invalid_ouput = false
 		}
 		PrintColor("Choose your dictionnaries\n\n", "White")
-		keys := Listmap(dictionnaries_names)
+		keys := Listmap(save.DictionnaryNames)
 		PrintColor("[b]: Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input)
@@ -71,7 +71,7 @@ func MenuDic(save Save) {
 			Clear()
 		} else {
 			Clear()
-			save.ListsWords = GetFileInLine("../dictionnaries/" + dictionnaries_names[input] + ".txt")
+			save.ListsWords = GetFileInLine("../dictionnaries/" + save.DictionnaryNames[input] + ".txt")
 			MenuMode(save)
 		}
 	}
@@ -96,7 +96,7 @@ func MenuSave() {
 		fmt.Scanln(&input) // get the input player
 		input = strings.ToLower(input)
 		if input == "y" {
-			Game(LoadSave())
+			Game(LoadSave(), false)
 		} else if input == "n" {
 			Engine()
 		} else {
