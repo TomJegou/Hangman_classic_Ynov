@@ -71,3 +71,30 @@ func MenuDic() {
 		}
 	}
 }
+
+/*
+ */
+
+func MenuSave() {
+	Clear()
+	var input string // Store the input player
+	keep_playing := true
+	invalid_ouput := false
+	for keep_playing {
+		if invalid_ouput {
+			Clear()
+			PrintColor("Invalid output !\n\n", "White")
+			invalid_ouput = false
+		} else {
+			PrintColor("Hum it seems that there is a save, would you like to load it? Y/n: ", "white")
+		}
+		fmt.Scanln(&input) // get the input player
+		if input == "y" {
+			PrintColor("En construction", "White")
+		} else if input == "n" {
+			PrintColor("En construction", "White")
+		} else {
+			invalid_ouput = true
+		}
+	}
+}
