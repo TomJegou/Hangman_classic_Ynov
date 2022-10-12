@@ -75,3 +75,20 @@ func DisplayModLetter(save *Save) {
 	}
 	PrintColor("Choose: ", "White") //Input display
 }
+
+func DisplayText(color string, save *Save) {
+	if save.DisplayMode == "0" { //if it's classic mod, calls the classicdisplay function
+		DisplayClassic(save.CurrentStateWord)
+		return
+	}
+	for i := 1; i <= 9; i++ { // loop each line
+		l := ""                                           // store line
+		for j := 0; j < len(save.CurrentStateWord); j++ { // loop for each character
+			l += GetFileInLine("../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt")[297+i+Getpositioninalphabet(save.CurrentStateWord[j])*9]
+			/*if j != len(save.CurrentStateWord)-1 {
+				l += GetFileInLine("../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt")[i] // add a space after the letter except the last one
+			}*/
+		}
+		PrintColor(l+"\n", color)
+	}
+}

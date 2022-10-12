@@ -24,7 +24,12 @@ func Engine(issave bool) {
 			PrintColor("Invalid output !\n\n", "White")
 			invalid_ouput = false
 		} else {
-			PrintColor("Welcome to Classic_Hangman made by jtom and rlouis !\n\n", "white")
+			DisplayText("Red", &Save{TemplatesNames: map[string]string{"1": "standard"}, DisplayMode: "1", CurrentStateWord: []byte("Welcome to")})
+			DisplayText("Red", &Save{TemplatesNames: map[string]string{"1": "standard"}, DisplayMode: "1", CurrentStateWord: []byte("Classic_Hangman")})
+			DisplayText("Red", &Save{TemplatesNames: map[string]string{"1": "standard"}, DisplayMode: "1", CurrentStateWord: []byte("made by")})
+			DisplayText("Red", &Save{TemplatesNames: map[string]string{"1": "standard"}, DisplayMode: "1", CurrentStateWord: []byte("jtom and rlouis !")})
+			//DisplayModLetter(&Save{TemplatesNames: map[string]string{"1": "standard"}, DisplayMode: "1", CurrentStateWord: []byte("mot avec space")})
+			//PrintColor("Welcome to Classic_Hangman made by jtom and rlouis !\n\n", "white")
 		}
 		PrintColor("[s]: Start new game", "Green")
 		PrintColor("\n[q]: quit\n\n", "Red") // change print
