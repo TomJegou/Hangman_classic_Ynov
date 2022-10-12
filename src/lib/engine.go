@@ -24,7 +24,7 @@ func Engine(issave bool) {
 			PrintColor("Invalid output !\n\n", "White")
 			invalid_ouput = false
 		} else {
-			DisplayModLetter(&Save{TemplatesNames: map[string]string{"1": "smallstandard"}, DisplayMode: "1", CurrentStateWord: []byte("mot avec space")}, "Red", false)
+			DisplayModLetter(&Save{TemplatesNames: map[string]string{"1": "classic"}, DisplayMode: "1", CurrentStateWord: []byte("Hey")}, "Red", false, false)
 		}
 		PrintColor("[s]: Start new game", "Green")
 		PrintColor("\n[q]: quit\n\n", "Red") // change print

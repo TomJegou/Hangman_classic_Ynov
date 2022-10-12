@@ -75,7 +75,7 @@ func Game(save *Save, new bool) {
 			}
 			DisplayHangman(save.NumberError)
 		}
-		DisplayModLetter(save, "White", true)
+		DisplayModLetter(save, "White", true, true)
 		fmt.Scanln(&input) // get the intput player
 		// check the input validity
 		if input == "STOP" {
@@ -118,11 +118,11 @@ func Game(save *Save, new bool) {
 		if save.NumberError > 0 {
 			DisplayHangman(save.NumberError)
 		}
-		DisplayModLetter(save, "White", true)
+		DisplayModLetter(save, "White", true, true)
 		PrintColor("\nCongrat !\nYou've found the word\nThe word was: "+save.WordToGess+"\n\n", "Green")
 	} else {
 		DisplayHangman(save.NumberError)
-		DisplayModLetter(save, "White", true)
+		DisplayModLetter(save, "White", true, true)
 		PrintColor("\nYou didn't find the word !\nThe word was: "+save.WordToGess+"\n\n", "Red")
 	}
 	//loop to ask the player to keep playing or not
