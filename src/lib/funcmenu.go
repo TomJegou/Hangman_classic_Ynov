@@ -25,7 +25,6 @@ func MenuMode(save *Save, issave bool) {
 			invalid_ouput = false
 		}
 		PrintColor("Choose your mode\n\n", "White")
-		PrintColor("[0]: Classique\n", "White")
 		keys := Listmap(save.TemplatesNames) // Get the key list in order to check if the next input is valid
 		PrintColor("[b]: Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
