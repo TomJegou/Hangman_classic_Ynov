@@ -5,24 +5,6 @@ import (
 )
 
 /*
-Function that displays the word in normal mod
-it takes as parameter a table of bytes
-*/
-
-func DisplayClassic(t []byte) {
-	currentStateWord := ""
-	for i := 0; i < len(t); i++ {
-		if i == len(t)-1 {
-			currentStateWord += string(t[i])
-		} else {
-			currentStateWord += string(t[i]) + " "
-		}
-	}
-	PrintColor(currentStateWord+"\n", "White")
-	PrintColor("Choose: ", "White")
-}
-
-/*
 Function that displays the current state of the hangman according to the number of error
 */
 
@@ -58,37 +40,20 @@ function that displays the word according to the template mod
 * 2: thinkertoy mod
 */
 
-func DisplayModLetter(save *Save) {
-	if save.DisplayMode == "0" { //if it's classic mod, calls the classicdisplay function
-		DisplayClassic(save.CurrentStateWord)
-		return
-	}
+func DisplayModLetter(save *Save, color string, withSpace bool) {
+	// if save.DisplayMode == "0" { //if it's classic mod, calls the classicdisplay function
+	// 	DisplayClassic(save.CurrentStateWord)
+	// 	return
+	// }
 	for i := 1; i <= 9; i++ { // loop each line
 		l := ""                                           // store line
 		for j := 0; j < len(save.CurrentStateWord); j++ { // loop for each character
 			l += GetFileInLine("../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt")[297+i+Getpositioninalphabet(save.CurrentStateWord[j])*9]
-			if j != len(save.CurrentStateWord)-1 {
+			if j != len(save.CurrentStateWord)-1 && withSpace {
 				l += GetFileInLine("../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt")[i] // add a space after the letter except the last one
 			}
 		}
 		PrintColor(l+"\n", "White")
 	}
 	PrintColor("Choose: ", "White") //Input display
-}
-
-func DisplayText(color string, save *Save) {
-	if save.DisplayMode == "0" { //if it's classic mod, calls the classicdisplay function
-		DisplayClassic(save.CurrentStateWord)
-		return
-	}
-	for i := 1; i <= 9; i++ { // loop each line
-		l := ""                                           // store line
-		for j := 0; j < len(save.CurrentStateWord); j++ { // loop for each character
-			l += GetFileInLine("../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt")[297+i+Getpositioninalphabet(save.CurrentStateWord[j])*9]
-			/*if j != len(save.CurrentStateWord)-1 {
-				l += GetFileInLine("../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt")[i] // add a space after the letter except the last one
-			}*/
-		}
-		PrintColor(l+"\n", color)
-	}
 }
