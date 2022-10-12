@@ -104,6 +104,7 @@ func MenuSave() {
 		fmt.Scanln(&input) // get the input player
 		input = strings.ToLower(input)
 		if input == "y" {
+			LoadingBar(25)
 			Engine(true)
 			return
 		} else if input == "n" {
