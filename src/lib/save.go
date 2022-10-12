@@ -14,6 +14,10 @@ type Save struct {
 	TemplatesNames, DictionnaryNames                     map[string]string
 }
 
+/*
+Function that load a Save
+*/
+
 func LoadSave() *Save {
 	save := &Save{}
 	bytevalue, err := os.ReadFile("saves/save.json")
@@ -24,6 +28,10 @@ func LoadSave() *Save {
 	return save
 }
 
+/*
+Function that save a game
+*/
+
 func SaveGame(save *Save) {
 	byteValue, err := json.MarshalIndent(save, "", "    ")
 	if err != nil {
@@ -31,6 +39,10 @@ func SaveGame(save *Save) {
 	}
 	os.WriteFile("saves/save.json", byteValue, 0644)
 }
+
+/*
+Function that reset the word ,nb error , attempt ,from the save
+*/
 
 func ResetWordFromSave(save *Save) {
 	save.AttemptNumber = 0
