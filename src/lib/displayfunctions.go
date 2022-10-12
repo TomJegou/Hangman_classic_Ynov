@@ -38,12 +38,14 @@ function that displays the word according to the template mod
 */
 
 func DisplayModLetter(save *Save, color string, withSpace bool) {
-	for i := 1; i <= 9; i++ { // loop each line
+	pathDisplay := "../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt"
+	multiple := CalculateMultiple(pathDisplay)
+	for i := 1; i <= multiple; i++ { // loop each line
 		l := ""                                           // store line
 		for j := 0; j < len(save.CurrentStateWord); j++ { // loop for each character
-			l += GetFileInLine("../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt")[297+i+Getpositioninalphabet(save.CurrentStateWord[j])*9]
+			l += GetFileInLine(pathDisplay)[33*multiple+i+Getpositioninalphabet(save.CurrentStateWord[j])*multiple]
 			if j != len(save.CurrentStateWord)-1 && withSpace {
-				l += GetFileInLine("../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt")[i] // add a space after the letter except the last one
+				l += " " // add a space after the letter except the last one
 			}
 		}
 		PrintColor(l+"\n", "White")
