@@ -37,7 +37,7 @@ func DisplayWrongLetter(numberError, maxError int) {
 function that displays the word according to the template mod
 */
 
-func DisplayModLetter(save *Save, color string, withSpace bool) {
+func DisplayModLetter(save *Save, color string, withSpace, input bool) {
 	pathDisplay := "../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt"
 	multiple := CalculateMultiple(pathDisplay)
 	for i := 1; i <= multiple; i++ { // loop each line
@@ -50,5 +50,7 @@ func DisplayModLetter(save *Save, color string, withSpace bool) {
 		}
 		PrintColor(l+"\n", "White")
 	}
-	PrintColor("Choose: ", "White") //Input display
+	if input {
+		PrintColor("Choose: ", "White") //Input display
+	}
 }
