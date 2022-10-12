@@ -5,6 +5,10 @@ import (
 	"os"
 )
 
+/*
+Data Save structure
+*/
+
 type Save struct {
 	Debug                                                bool
 	NumberError, MaxError, AttemptNumber                 int
