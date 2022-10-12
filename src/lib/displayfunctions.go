@@ -35,16 +35,9 @@ func DisplayWrongLetter(numberError, maxError int) {
 
 /*
 function that displays the word according to the template mod
-* 0: classic mod
-* 1: standard mod
-* 2: thinkertoy mod
 */
 
 func DisplayModLetter(save *Save, color string, withSpace bool) {
-	// if save.DisplayMode == "0" { //if it's classic mod, calls the classicdisplay function
-	// 	DisplayClassic(save.CurrentStateWord)
-	// 	return
-	// }
 	for i := 1; i <= 9; i++ { // loop each line
 		l := ""                                           // store line
 		for j := 0; j < len(save.CurrentStateWord); j++ { // loop for each character
