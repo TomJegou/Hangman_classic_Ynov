@@ -28,7 +28,7 @@ func Engine(issave bool) {
 			// DisplayText("Red", &Save{TemplatesNames: map[string]string{"1": "standard"}, DisplayMode: "1", CurrentStateWord: []byte("Classic_Hangman")})
 			// DisplayText("Red", &Save{TemplatesNames: map[string]string{"1": "standard"}, DisplayMode: "1", CurrentStateWord: []byte("made by")})
 			// DisplayText("Red", &Save{TemplatesNames: map[string]string{"1": "standard"}, DisplayMode: "1", CurrentStateWord: []byte("jtom and rlouis !")})
-			DisplayModLetter(&Save{TemplatesNames: map[string]string{"1": "standard"}, DisplayMode: "1", CurrentStateWord: []byte("mot avec space")}, "Red", false)
+			DisplayModLetter(&Save{TemplatesNames: map[string]string{"1": "smallstandard"}, DisplayMode: "1", CurrentStateWord: []byte("mot avec space")}, "Red", false)
 			//PrintColor("Welcome to Classic_Hangman made by jtom and rlouis !\n\n", "white")
 		}
 		PrintColor("[s]: Start new game", "Green")
