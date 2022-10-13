@@ -5,7 +5,7 @@ import (
 )
 
 /*
-Function that displays the current state of the hangman according to the number of error
+Function that displays the current state of the hangman according to the number of errors
 */
 
 func DisplayHangman(numberError int) {
