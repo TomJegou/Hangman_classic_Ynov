@@ -95,39 +95,35 @@ func MenuDic(save *Save, issave bool) {
 }
 
 /*
-
- */
+Menu to choose if it loads the save
+*/
 
 func MenuSave() {
 	Clear()
 	var input string // Store the input player
 	keep_playing := true
-	invalid_ouput := false
+	validOutput := true
 	for keep_playing {
-		if invalid_ouput {
+		if !validOutput {
 			Clear()
 			PrintColor("Invalid output !\n\n", "White")
-			invalid_ouput = false
 		}
 		PrintColor("Hum it seems that there is a save, would you like to load it? Y/n: ", "white")
-		fmt.Scanln(&input) // get the input player
-		input = strings.ToLower(input)
-		if len(input) > 1 {
-			invalid_ouput = false
+		input, validOutput = GetInputUser([]string{"y", "n"})
+		if !validOutput {
 			continue
-		}
-		if input == "y" {
+		} else if input == "y" {
 			LoadingBar(25)
 			Engine(true)
 			return
-		} else if input == "n" {
+		} else {
 			Engine(false)
 			return
-		} else {
-			invalid_ouput = true
 		}
 	}
 }
+
+/*Menu to at the endgame to choose to continue or not*/
 
 func EndgameMenu(save *Save, found bool) {
 	// Display endgame message
@@ -156,8 +152,7 @@ func EndgameMenu(save *Save, found bool) {
 		input, validOutput = GetInputUser([]string{"c", "q", "b"})
 		if !validOutput {
 			continue
-		}
-		if input == "c" {
+		} else if input == "c" {
 			Clear()
 			PrintColor("Starting new game...", "White")
 			time.Sleep(1 * time.Second)
@@ -168,7 +163,7 @@ func EndgameMenu(save *Save, found bool) {
 			PrintColor("Thanks for playing !", "White")
 			time.Sleep(1 * time.Second)
 			os.Exit(0)
-		} else if input == "b" {
+		} else {
 			Clear()
 			loop = false
 			ResetWordFromSave(save)
