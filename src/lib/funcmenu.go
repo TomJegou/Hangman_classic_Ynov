@@ -1,9 +1,7 @@
 package lib
 
 import (
-	"fmt"
 	"os"
-	"strings"
 	"time"
 )
 
@@ -17,30 +15,24 @@ func MenuMode(save *Save, issave bool) {
 		Game(save, false)
 	}
 	save.TemplatesNames = Scandir("../Templates/policies/") // Get the map of all templates policies as value and an index as key
+	keys := Listmap(save.TemplatesNames)                    // Get the key list in order to check if the next input is valid
 	var input string
 	loop := true
-	invalid_ouput := false
+	validOutput := true
 	for loop {
-		if invalid_ouput {
+		Clear()
+		if !validOutput {
 			PrintColor("Invalid input\n\n", "White")
-			invalid_ouput = false
 		}
 		PrintColor("Choose your mode\n\n", "White")
-		keys := Listmap(save.TemplatesNames) // Get the key list in order to check if the next input is valid
 		PrintColor("[b]: Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
-		fmt.Scanln(&input) // Scan and store the user input into the variable input
-		input = strings.ToLower(input)
-		if len(input) > 1 {
-			invalid_ouput = false
+		keys = append(keys, []string{"b"}...)
+		input, validOutput = GetInputUser(keys)
+		if !validOutput {
 			continue
-		}
-		if input == "b" {
+		} else if input == "b" {
 			loop = false
-			Clear()
-		} else if !IsIn(keys, input) && input != "0" { // check the input validity
-			invalid_ouput = true
-			Clear()
 		} else {
 			Clear()
 			PrintColor("Starting game...", "White")
@@ -63,30 +55,23 @@ func MenuDic(save *Save, issave bool) {
 	save.DictionnaryNames = Scandir("../dictionnaries/")
 	var input string
 	loop := true
-	invalid_ouput := false
+	validOutput := true
 	for loop {
-		if invalid_ouput {
+		Clear()
+		if !validOutput {
 			PrintColor("Invalid input\n\n", "White")
-			invalid_ouput = false
 		}
 		PrintColor("Choose your dictionnaries\n\n", "White")
 		keys := Listmap(save.DictionnaryNames)
 		PrintColor("[b]: Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
-		fmt.Scanln(&input)
-		input = strings.ToLower(input)
-		if len(input) > 1 {
-			invalid_ouput = false
+		keys = append(keys, []string{"b"}...)
+		input, validOutput = GetInputUser(keys)
+		if !validOutput {
 			continue
-		}
-		if input == "b" {
+		} else if input == "b" {
 			loop = false
-			Clear()
-		} else if !IsIn(keys, input) {
-			invalid_ouput = true
-			Clear()
 		} else {
-			Clear()
 			save.ListsWords = GetFileInLine("../dictionnaries/" + save.DictionnaryNames[input] + ".txt")
 			save.WordToGess = ChoseRandomWord(save.ListsWords)
 			MenuMode(save, false)
@@ -99,13 +84,12 @@ Menu to choose if it loads the save
 */
 
 func MenuSave() {
-	Clear()
 	var input string // Store the input player
-	keep_playing := true
+	loop := true
 	validOutput := true
-	for keep_playing {
+	for loop {
+		Clear()
 		if !validOutput {
-			Clear()
 			PrintColor("Invalid output !\n\n", "White")
 		}
 		PrintColor("Hum it seems that there is a save, would you like to load it? Y/n: ", "white")
@@ -128,7 +112,6 @@ func MenuSave() {
 func EndgameMenu(save *Save, found bool) {
 	// Display endgame message
 	if found {
-		Clear()
 		if save.NumberError > 0 {
 			DisplayHangman(save.NumberError)
 		}
@@ -144,6 +127,7 @@ func EndgameMenu(save *Save, found bool) {
 	var input string
 	var validOutput = true
 	for loop {
+		Clear()
 		if !validOutput {
 			PrintColor("Invalid output\n", "White")
 		}
@@ -153,7 +137,6 @@ func EndgameMenu(save *Save, found bool) {
 		if !validOutput {
 			continue
 		} else if input == "c" {
-			Clear()
 			PrintColor("Starting new game...", "White")
 			time.Sleep(1 * time.Second)
 			ResetWordFromSave(save)
@@ -164,9 +147,8 @@ func EndgameMenu(save *Save, found bool) {
 			time.Sleep(1 * time.Second)
 			os.Exit(0)
 		} else {
-			Clear()
-			loop = false
 			ResetWordFromSave(save)
+			loop = false
 		}
 	}
 }
