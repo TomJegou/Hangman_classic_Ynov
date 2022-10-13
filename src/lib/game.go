@@ -37,7 +37,7 @@ func Game(save *Save, new bool) {
 	invalid_ouput := false
 	twice := false
 	for len(save.RemainLetter) > 0 {
-		Clear()
+		ClearConsole()
 		if save.NumberError == 0 {
 			PrintColor("Good Luck, you have ", "White")
 			PrintColor("10 ", "Green")
@@ -95,7 +95,7 @@ func Game(save *Save, new bool) {
 		// check the input validity
 		if input == "STOP" {
 			SaveGame(save)
-			Clear()
+			ClearConsole()
 			PrintColor("Thanks for playing !", "White")
 			os.Exit(0)
 		}

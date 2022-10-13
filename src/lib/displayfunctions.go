@@ -30,7 +30,7 @@ Function that displays the current state of the hangman according to the number 
 */
 
 func DisplayHangman(numberError int) {
-	file := GetFileInLine("../Templates/hangman/hangman.txt")
+	file := GetFileLineInSlice("../Templates/hangman/hangman.txt")
 	if numberError > 10 {
 		DisplayHangman(10)
 		return
@@ -60,11 +60,11 @@ function that displays the word according to the template mod
 
 func DisplayModLetter(save *Save, color string, withSpace, input bool) {
 	pathDisplay := "../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt"
-	multiple := CalculateMultiple(pathDisplay)
+	multiple := CalculateLinesbtwChar(pathDisplay)
 	for i := 1; i <= multiple; i++ { // loop each line
 		l := ""                                           // store line
 		for j := 0; j < len(save.CurrentStateWord); j++ { // loop for each character
-			l += GetFileInLine(pathDisplay)[33*multiple+i+Getpositioninalphabet(save.CurrentStateWord[j])*multiple]
+			l += GetFileLineInSlice(pathDisplay)[33*multiple+i+Getpositioninalphabet(save.CurrentStateWord[j])*multiple]
 			if j != len(save.CurrentStateWord)-1 && withSpace {
 				l += " " // add a space after the letter except the last one
 			}
@@ -91,15 +91,15 @@ func LoadingBar(t time.Duration) { //t = Duration in millisecond
 	ldbar := "[░░░░░░░░░░░░░░░░░░░░░░░░░░░]"
 	ldbarRune := []rune(ldbar)
 	for i := 1; i < len(ldbarRune)-1; i++ {
-		Clear()
+		ClearConsole()
 		ldbarRune[i] = rune('█')
 		PrintColor(string(ldbarRune), "Red")
 		time.Sleep(t * time.Millisecond) //pauses for t milliseconds
 	}
-	Clear()
+	ClearConsole()
 	PrintColor(string(ldbarRune), "Green")
 	time.Sleep(500 * time.Millisecond)
-	Clear()
+	ClearConsole()
 	PrintColor("Loading Complet\n", "Green")
 	time.Sleep(500 * time.Millisecond)
 }

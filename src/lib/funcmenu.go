@@ -19,7 +19,7 @@ func ModeMenu(save *Save, issave bool) {
 	loop := true
 	validOutput := true
 	for loop {
-		Clear()
+		ClearConsole()
 		if !validOutput {
 			PrintColor("Invalid input\n\n", "White")
 		}
@@ -34,7 +34,7 @@ func ModeMenu(save *Save, issave bool) {
 		} else if input == "b" {
 			loop = false
 		} else {
-			Clear()
+			ClearConsole()
 			PrintColor("Starting game...", "White")
 			time.Sleep(1 * time.Second)
 			save.DisplayMode = input
@@ -57,7 +57,7 @@ func DicMenu(save *Save, issave bool) {
 	loop := true
 	validOutput := true
 	for loop {
-		Clear()
+		ClearConsole()
 		if !validOutput {
 			PrintColor("Invalid input\n\n", "White")
 		}
@@ -72,7 +72,7 @@ func DicMenu(save *Save, issave bool) {
 		} else if input == "b" {
 			loop = false
 		} else {
-			save.ListsWords = GetFileInLine("../dictionnaries/" + save.DictionnaryNames[input] + ".txt")
+			save.ListsWords = GetFileLineInSlice("../dictionnaries/" + save.DictionnaryNames[input] + ".txt")
 			save.WordToGess = ChoseRandomWord(save.ListsWords)
 			ModeMenu(save, false)
 		}
@@ -88,7 +88,7 @@ func SaveMenu() {
 	loop := true
 	validOutput := true
 	for loop {
-		Clear()
+		ClearConsole()
 		if !validOutput {
 			PrintColor("Invalid output !\n\n", "White")
 		}
@@ -112,7 +112,7 @@ func SaveMenu() {
 func EndgameMenu(save *Save, found bool) {
 	// Display endgame message
 	if found {
-		Clear()
+		ClearConsole()
 		if save.NumberError > 0 {
 			DisplayHangman(save.NumberError)
 		}
@@ -129,7 +129,7 @@ func EndgameMenu(save *Save, found bool) {
 	var validOutput = true
 	for loop {
 		if !validOutput {
-			Clear()
+			ClearConsole()
 			PrintColor("Invalid output\n", "White")
 		}
 		PrintColor("[c]continue [q]quit [b]Back\n\n", "White")
@@ -143,7 +143,7 @@ func EndgameMenu(save *Save, found bool) {
 			ResetWordFromSave(save)
 			Game(save, true)
 		} else if input == "q" {
-			Clear()
+			ClearConsole()
 			PrintColor("Thanks for playing !", "White")
 			time.Sleep(1 * time.Second)
 			os.Exit(0)

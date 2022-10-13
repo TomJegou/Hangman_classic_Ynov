@@ -13,7 +13,7 @@ func Engine(issave bool) {
 	loop := true
 	validOutput := true
 	for loop {
-		Clear()
+		ClearConsole()
 		if !validOutput {
 			PrintColor("Invalid output !\n\n", "White")
 		} else {
@@ -29,7 +29,7 @@ func Engine(issave bool) {
 		if input == "s" {
 			DicMenu(&Save{MaxError: 10, AttemptNumber: 0, Debug: false}, false) // calls the menu function
 		} else {
-			Clear()
+			ClearConsole()
 			PrintColor("Thanks for Playing !\n", "White")
 			loop = false
 		}

@@ -13,7 +13,7 @@ Function that clears the terminal output
 We use the ANSI Escape Sequences
 */
 
-func Clear() {
+func ClearConsole() {
 	fmt.Print("\033[H\033[2J") // the \033[h is used to move the cursor to the 0 0 positon and \033[j to clear the terminal
 }
 
@@ -24,25 +24,25 @@ We just count the number of line the first char of the file which
 is the char space.
 */
 
-func CalculateMultiple(pathtofile string) int {
-	count := 1
-	t := GetFileInLine(pathtofile)
-	for i := 1; i < len(t); i++ {
-		count2 := 0                      //count the number of spaces in a line, if the number is greater than 0 it's ok
-		for j := 0; j < len(t[i]); j++ { //looping into the line to chech every char in it
-			if string(t[i][j]) == " " {
-				count2++
+func CalculateLinesbtwChar(pathtofile string) int {
+	countLine := 1
+	sliceLines := GetFileLineInSlice(pathtofile)
+	for i := 1; i < len(sliceLines); i++ {
+		countChar := 0                            //count the number of spaces in a line, if the number is greater than 0 it's ok
+		for j := 0; j < len(sliceLines[i]); j++ { //looping into the line to chech every char in it
+			if string(sliceLines[i][j]) == " " {
+				countChar++
 			}
-			if string(t[i][j]) != " " { // if there is something else than a space, it means that we are in the other char
-				return count
+			if string(sliceLines[i][j]) != " " { // if there is something else than a space, it means that we are in the other char
+				return countLine
 			}
 		}
-		if count2 == 0 {
-			return count
+		if countChar == 0 {
+			return countLine
 		}
-		count++
+		countLine++
 	}
-	return count
+	return countLine
 }
 
 /*
@@ -140,7 +140,7 @@ func Scandir(pathdir string) map[string]string {
 
 // art from http://www.ascii-art.de/ascii/s/stickman.txt and https://ascii.co.uk/art/hangman
 func EasterEgg(filename string) {
-	file := GetFileInLine("../Templates/.foreasteregg/" + filename + ".txt")
+	file := GetFileLineInSlice("../Templates/.foreasteregg/" + filename + ".txt")
 	for i := 0; i < len(file); i++ {
 		PrintColor(file[i]+"\n", "White")
 	}

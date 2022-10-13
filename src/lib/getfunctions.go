@@ -10,11 +10,11 @@ import (
 Function that open a file and return a slice of all lines
 */
 
-func GetFileInLine(file_path string) []string {
+func GetFileLineInSlice(file_path string) []string {
 	data := []string{} // slice wich sotre all lines
 	file, err := os.Open(file_path)
 	if err != nil {
-		Clear()
+		ClearConsole()
 		PrintColor("This file doesn't exist\n", "Red")
 		os.Exit(0)
 	} else {
