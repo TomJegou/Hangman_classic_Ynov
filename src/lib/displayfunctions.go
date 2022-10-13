@@ -102,5 +102,4 @@ func LoadingBar(t time.Duration) { //t = Duration in millisecond
 	Clear()
 	PrintColor("Loading Complet\n", "Green")
 	time.Sleep(500 * time.Millisecond)
-
 }

@@ -12,7 +12,6 @@ Game function, main loop of the game with all the settings already set by the pl
 */
 
 func Game(save *Save, new bool) {
-	Clear()
 	if new {
 		hiddenWord := ""
 		for i := 0; i < len(save.WordToGess); i++ { // append all charcater into a slice in order to be read by the Isin function
@@ -90,7 +89,6 @@ func Game(save *Save, new bool) {
 			fmt.Scanln()
 			found = false
 			save.NumberError = 10
-			Clear()
 			break
 		}
 		/*end easter egg*/
