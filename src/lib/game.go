@@ -1,11 +1,9 @@
 package lib
 
 import (
-	"bufio"
 	"fmt"
 	"math/rand"
 	"os"
-	"strings"
 	"time"
 )
 
@@ -131,54 +129,6 @@ func Game(save *Save, new bool) {
 		}
 		SaveGame(save)
 	}
-	// Display endgame message
-	if found {
-		Clear()
-		if save.NumberError > 0 {
-			DisplayHangman(save.NumberError)
-		}
-		DisplayModLetter(save, "White", true, true)
-		PrintColor("\nCongrat !\nYou've found the word\nThe word was: "+save.WordToGess+"\n\n", "Green")
-	} else {
-		DisplayWrongLetter(save.NumberError, save.MaxError)
-		DisplayHangman(save.NumberError)
-		DisplayModLetter(save, "White", true, true)
-		PrintColor("\nYou didn't find the word !\nThe word was: "+save.WordToGess+"\n\n", "Red")
-	}
 	//loop to ask the player to keep playing or not
-	loop := true
-	for loop {
-		if invalid_ouput {
-			PrintColor("Invalid output\n", "White")
-			invalid_ouput = false
-		}
-		PrintColor("[c]continue [q]quit [b]Back\n\n", "White")
-		PrintColor("Choose: ", "White")
-		bufioReader := bufio.NewReader(os.Stdin)
-		input, _ = bufioReader.ReadString('\n')
-		input = strings.ToLower(input)
-		if len(input) > 1 {
-			invalid_ouput = false
-			continue
-		}
-		if input == "c" {
-			Clear()
-			PrintColor("Starting new game...", "White")
-			time.Sleep(1 * time.Second)
-			ResetWordFromSave(save)
-			Game(save, true)
-		} else if input == "q" {
-			Clear()
-			PrintColor("Thanks for playing !", "White")
-			time.Sleep(1 * time.Second)
-			os.Exit(0)
-		} else if input == "b" {
-			Clear()
-			loop = false
-			ResetWordFromSave(save)
-		} else {
-			Clear()
-			invalid_ouput = true
-		}
-	}
+	EndgameMenu(save, found)
 }
