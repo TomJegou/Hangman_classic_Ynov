@@ -85,6 +85,15 @@ func Game(save *Save, new bool) {
 			fmt.Scanln()
 			continue
 		}
+		if input == "ImDead" {
+			EasterEgg("dead")
+			PrintColor("Press enter to continue \n", "Green")
+			fmt.Scanln()
+			found = false
+			save.NumberError = 10
+			Clear()
+			break
+		}
 		/*end easter egg*/
 		// check the input validity
 		if input == "STOP" {
