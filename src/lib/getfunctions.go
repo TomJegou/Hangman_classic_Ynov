@@ -3,6 +3,7 @@ package lib
 import (
 	"bufio"
 	"os"
+	"strings"
 )
 
 /*
@@ -39,5 +40,5 @@ func GetInputUser(options []string) (string, bool) {
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
 	input := scanner.Text()
-	return input, IsIn(options, input)
+	return strings.ToLower(input), IsIn(options, input)
 }
