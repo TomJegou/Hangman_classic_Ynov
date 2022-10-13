@@ -5,17 +5,17 @@ import (
 )
 
 /*
-Func that make a loding bar
+Func that makes a loding bar
 */
 
-func LoadingBar(t time.Duration) { //t = time in millisecond
+func LoadingBar(t time.Duration) { //t = Duration in millisecond
 	ldbar := "[░░░░░░░░░░░░░░░░░░░░░░░░░░░]"
 	ldbarRune := []rune(ldbar)
 	for i := 1; i < len(ldbarRune)-1; i++ {
 		Clear()
 		ldbarRune[i] = rune('█')
 		PrintColor(string(ldbarRune), "Red")
-		time.Sleep(t * time.Millisecond) //pauses for t seconds
+		time.Sleep(t * time.Millisecond) //pauses for t milliseconds
 	}
 	Clear()
 	PrintColor(string(ldbarRune), "Green")
