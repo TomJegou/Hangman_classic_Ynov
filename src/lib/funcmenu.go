@@ -30,6 +30,10 @@ func MenuMode(save *Save, issave bool) {
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input) // Scan and store the user input into the variable input
 		input = strings.ToLower(input)
+		if len(input) > 1 {
+			invalid_ouput = false
+			continue
+		}
 		if input == "b" {
 			loop = false
 			Clear()
@@ -70,6 +74,10 @@ func MenuDic(save *Save, issave bool) {
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input)
 		input = strings.ToLower(input)
+		if len(input) > 1 {
+			invalid_ouput = false
+			continue
+		}
 		if input == "b" {
 			loop = false
 			Clear()
@@ -103,6 +111,10 @@ func MenuSave() {
 		PrintColor("Hum it seems that there is a save, would you like to load it? Y/n: ", "white")
 		fmt.Scanln(&input) // get the input player
 		input = strings.ToLower(input)
+		if len(input) > 1 {
+			invalid_ouput = false
+			continue
+		}
 		if input == "y" {
 			LoadingBar(25)
 			Engine(true)

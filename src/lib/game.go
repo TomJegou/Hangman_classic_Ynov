@@ -1,6 +1,7 @@
 package lib
 
 import (
+	"bufio"
 	"fmt"
 	"math/rand"
 	"os"
@@ -153,8 +154,13 @@ func Game(save *Save, new bool) {
 		}
 		PrintColor("[c]continue [q]quit [b]Back\n\n", "White")
 		PrintColor("Choose: ", "White")
-		fmt.Scanln(&input)
+		bufioReader := bufio.NewReader(os.Stdin)
+		input, _ = bufioReader.ReadString('\n')
 		input = strings.ToLower(input)
+		if len(input) > 1 {
+			invalid_ouput = false
+			continue
+		}
 		if input == "c" {
 			Clear()
 			PrintColor("Starting new game...", "White")
