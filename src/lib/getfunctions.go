@@ -34,3 +34,10 @@ Function that return the postition of the letter in the alphabet
 func Getpositioninalphabet(letter byte) int {
 	return int(letter) - 65
 }
+
+func GetInputUser(options []string) (string, bool) {
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	input := scanner.Text()
+	return input, IsIn(options, input)
+}
