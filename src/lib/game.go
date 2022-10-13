@@ -130,6 +130,7 @@ func Game(save *Save, new bool) {
 		DisplayModLetter(save, "White", true, true)
 		PrintColor("\nCongrat !\nYou've found the word\nThe word was: "+save.WordToGess+"\n\n", "Green")
 	} else {
+		DisplayWrongLetter(save.NumberError, save.MaxError)
 		DisplayHangman(save.NumberError)
 		DisplayModLetter(save, "White", true, true)
 		PrintColor("\nYou didn't find the word !\nThe word was: "+save.WordToGess+"\n\n", "Red")
