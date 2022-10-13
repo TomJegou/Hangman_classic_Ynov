@@ -9,13 +9,12 @@ import (
 Displays Menu to choose the diplay Mod and start the game
 */
 
-func MenuMode(save *Save, issave bool) {
+func ModeMenu(save *Save, issave bool) {
 	if issave {
 		issave = false
 		Game(save, false)
 	}
 	save.TemplatesNames = Scandir("../Templates/policies/") // Get the map of all templates policies as value and an index as key
-	keys := Listmap(save.TemplatesNames)                    // Get the key list in order to check if the next input is valid
 	var input string
 	loop := true
 	validOutput := true
@@ -25,6 +24,7 @@ func MenuMode(save *Save, issave bool) {
 			PrintColor("Invalid input\n\n", "White")
 		}
 		PrintColor("Choose your mode\n\n", "White")
+		keys := Listmap(save.TemplatesNames) // Get the key list in order to check if the next input is valid
 		PrintColor("[b]: Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
 		keys = append(keys, []string{"b"}...)
@@ -47,10 +47,10 @@ func MenuMode(save *Save, issave bool) {
 Displays Menu to choose a dictionnary
 */
 
-func MenuDic(save *Save, issave bool) {
+func DicMenu(save *Save, issave bool) {
 	if issave {
 		issave = false
-		MenuMode(save, true)
+		ModeMenu(save, true)
 	}
 	save.DictionnaryNames = Scandir("../dictionnaries/")
 	var input string
@@ -74,7 +74,7 @@ func MenuDic(save *Save, issave bool) {
 		} else {
 			save.ListsWords = GetFileInLine("../dictionnaries/" + save.DictionnaryNames[input] + ".txt")
 			save.WordToGess = ChoseRandomWord(save.ListsWords)
-			MenuMode(save, false)
+			ModeMenu(save, false)
 		}
 	}
 }
@@ -83,7 +83,7 @@ func MenuDic(save *Save, issave bool) {
 Menu to choose if it loads the save
 */
 
-func MenuSave() {
+func SaveMenu() {
 	var input string // Store the input player
 	loop := true
 	validOutput := true
@@ -112,11 +112,12 @@ func MenuSave() {
 func EndgameMenu(save *Save, found bool) {
 	// Display endgame message
 	if found {
+		Clear()
 		if save.NumberError > 0 {
 			DisplayHangman(save.NumberError)
 		}
 		DisplayModLetter(save, "White", true, true)
-		PrintColor("\nCongrat !\nYou've found the word\nThe word was: "+save.WordToGess+"\n\n", "Green")
+		PrintColor("\n\nCongrat !\nYou've found the word\nThe word was: "+save.WordToGess+"\n\n", "Green")
 	} else {
 		DisplayWrongLetter(save.NumberError, save.MaxError)
 		DisplayHangman(save.NumberError)
@@ -127,8 +128,8 @@ func EndgameMenu(save *Save, found bool) {
 	var input string
 	var validOutput = true
 	for loop {
-		Clear()
 		if !validOutput {
+			Clear()
 			PrintColor("Invalid output\n", "White")
 		}
 		PrintColor("[c]continue [q]quit [b]Back\n\n", "White")

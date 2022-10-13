@@ -7,7 +7,7 @@ Function Engine is the main loop for the hangman game
 func Engine(issave bool) {
 	if issave {
 		issave = false
-		MenuDic(LoadSave(), true)
+		DicMenu(LoadSave(), true)
 	}
 	var input string // Store the input player
 	loop := true
@@ -27,7 +27,7 @@ func Engine(issave bool) {
 			continue
 		}
 		if input == "s" {
-			MenuDic(&Save{MaxError: 10, AttemptNumber: 0, Debug: false}, false) // calls the menu function
+			DicMenu(&Save{MaxError: 10, AttemptNumber: 0, Debug: false}, false) // calls the menu function
 		} else {
 			Clear()
 			PrintColor("Thanks for Playing !\n", "White")

@@ -25,7 +25,7 @@ func main() {
 	os.Chdir(srcpath)                        // change the current working directory
 	_, err := os.ReadFile("saves/save.json") //check if a save exists
 	if err == nil {                          // call the Menu asking for loading the save
-		lib.MenuSave()
+		lib.SaveMenu()
 	} else {
 		lib.Engine(false) // if there is no save start the game
 	}
