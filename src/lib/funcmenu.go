@@ -149,7 +149,6 @@ func EndgameMenu(save *Save, found bool) {
 	var validOutput = true
 	for loop {
 		if !validOutput {
-			Clear()
 			PrintColor("Invalid output\n", "White")
 		}
 		PrintColor("[c]continue [q]quit [b]Back\n\n", "White")
