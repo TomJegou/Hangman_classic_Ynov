@@ -8,7 +8,9 @@ you just need to execute the excecutable file in the bin folder.
 ```
 ./bin/executable_name
 ```
+![](img/gif.gif)
 
 Good job ! You are now in the game's main menu, let's start !
 
 ## Start a game ##
+
