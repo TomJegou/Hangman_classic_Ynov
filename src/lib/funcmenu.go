@@ -2,6 +2,7 @@ package lib
 
 import (
 	"fmt"
+	"os"
 	"strings"
 	"time"
 )
@@ -124,6 +125,54 @@ func MenuSave() {
 			return
 		} else {
 			invalid_ouput = true
+		}
+	}
+}
+
+func EndgameMenu(save *Save, found bool) {
+	// Display endgame message
+	if found {
+		Clear()
+		if save.NumberError > 0 {
+			DisplayHangman(save.NumberError)
+		}
+		DisplayModLetter(save, "White", true, true)
+		PrintColor("\nCongrat !\nYou've found the word\nThe word was: "+save.WordToGess+"\n\n", "Green")
+	} else {
+		DisplayWrongLetter(save.NumberError, save.MaxError)
+		DisplayHangman(save.NumberError)
+		DisplayModLetter(save, "White", true, true)
+		PrintColor("\nYou didn't find the word !\nThe word was: "+save.WordToGess+"\n\n", "Red")
+	}
+	loop := true
+	var input string
+	var validOutput = true
+	for loop {
+		if !validOutput {
+			Clear()
+			PrintColor("Invalid output\n", "White")
+		}
+		PrintColor("[c]continue [q]quit [b]Back\n\n", "White")
+		PrintColor("Choose: ", "White")
+		input, validOutput = GetInputUser([]string{"c", "q", "b"})
+		if !validOutput {
+			continue
+		}
+		if input == "c" {
+			Clear()
+			PrintColor("Starting new game...", "White")
+			time.Sleep(1 * time.Second)
+			ResetWordFromSave(save)
+			Game(save, true)
+		} else if input == "q" {
+			Clear()
+			PrintColor("Thanks for playing !", "White")
+			time.Sleep(1 * time.Second)
+			os.Exit(0)
+		} else if input == "b" {
+			Clear()
+			loop = false
+			ResetWordFromSave(save)
 		}
 	}
 }
