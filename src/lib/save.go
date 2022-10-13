@@ -19,7 +19,7 @@ type Save struct {
 }
 
 /*
-Function that load a Save
+Function that loads a Save
 */
 
 func LoadSave() *Save {
@@ -28,16 +28,16 @@ func LoadSave() *Save {
 	if err != nil {
 		return save
 	}
-	json.Unmarshal(bytevalue, &save) // Unmarshall the json data and put them into the save struct
+	json.Unmarshal(bytevalue, &save) // Unmarshalls the json data and put them into the save struct
 	return save
 }
 
 /*
-Function that save a game
+Function that saves a game
 */
 
 func SaveGame(save *Save) {
-	byteValue, err := json.MarshalIndent(save, "", "    ") //Marshall the data in save with an indent of four spaces for a better lisibility
+	byteValue, err := json.MarshalIndent(save, "", "    ") //Marshalls the data in save with an indent of four spaces for a better lisibility
 	if err != nil {
 		PrintColor("Faild to save the game", "Red")
 	}
@@ -45,7 +45,7 @@ func SaveGame(save *Save) {
 }
 
 /*
-Function that reset the word ,nb error , attempt ,from the save
+Function that resets the word ,nb error , attempt ,from the save
 */
 
 func ResetWordFromSave(save *Save) {
