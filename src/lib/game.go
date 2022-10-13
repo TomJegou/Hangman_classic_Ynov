@@ -78,6 +78,14 @@ func Game(save *Save, new bool) {
 		}
 		DisplayModLetter(save, "White", true, true)
 		fmt.Scanln(&input) // get the intput player
+		/*all easter egg*/
+		if input == "noHolidays" {
+			EasterEgg("island")
+			PrintColor("Press enter to continue \n", "Green")
+			fmt.Scanln()
+			continue
+		}
+		/*end easter egg*/
 		// check the input validity
 		if input == "STOP" {
 			SaveGame(save)
