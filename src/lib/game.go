@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -135,6 +136,7 @@ func Game(save *Save, new bool) {
 		PrintColor("[c]continue [q]quit [b]Back\n\n", "White")
 		PrintColor("Choose: ", "White")
 		fmt.Scanln(&input)
+		input = strings.ToLower(input)
 		if input == "c" {
 			Clear()
 			PrintColor("Starting new game...", "White")
