@@ -5,7 +5,7 @@ This app is the implementation of a classic Hangman made by jtom and rlouis
 
 # Download and build the application #
 
-## For linux, MacOs and Windows##
+## For linux, MacOs and Windows ##
 
 Get a copy of the **classic_hangman** repository
 
@@ -32,3 +32,9 @@ Start the application
 ```
 ./bin/classic_hangman
 ```
+### Usage/Help ###
+
+For the usage instructions, please refer to the [manual.md](manual.md).
+
+
+# Have Fun ! #
