@@ -28,7 +28,7 @@ func LoadSave() *Save {
 	if err != nil {
 		return save
 	}
-	json.Unmarshal(bytevalue, &save)
+	json.Unmarshal(bytevalue, &save) // Unmarshall the json data and put them into the save struct
 	return save
 }
 
@@ -37,7 +37,7 @@ Function that save a game
 */
 
 func SaveGame(save *Save) {
-	byteValue, err := json.MarshalIndent(save, "", "    ")
+	byteValue, err := json.MarshalIndent(save, "", "    ") //Marshall the data in save with an indent of four spaces for a better lisibility
 	if err != nil {
 		PrintColor("Faild to save the game", "Red")
 	}
