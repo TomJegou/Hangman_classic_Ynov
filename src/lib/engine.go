@@ -29,8 +29,8 @@ func Engine(issave bool) {
 		PrintColor("[s]: Start new game", "Green")
 		PrintColor("\n[q]: quit\n\n", "Red") // change print
 		PrintColor("Choose: ", "White")
-		fmt.Scanln(&input) // get the input player
-		input = strings.ToLower(input)
+		fmt.Scanln(&input)             // get the input player
+		input = strings.ToLower(input) // force the input to be in lowercase if the user enter a capital letter
 		if input == "s" {
 			Clear()
 			MenuDic(&Save{MaxError: 10, AttemptNumber: 0, Debug: false}, false) // calls the menu function
