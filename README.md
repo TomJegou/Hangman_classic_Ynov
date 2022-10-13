@@ -37,4 +37,4 @@ Start the application
 For the usage instructions, please refer to the [manual.md](manual.md).
 
 
-# Have Fun ! #
+## Have Fun ! ##
