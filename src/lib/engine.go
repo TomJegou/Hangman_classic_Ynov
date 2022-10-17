@@ -3,7 +3,6 @@ package lib
 /*
 Function Engine is the main loop for the hangman game
 */
-
 func Engine(issave bool) {
 	if issave {
 		issave = false
