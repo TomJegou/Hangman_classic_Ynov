@@ -9,7 +9,7 @@ import (
 )
 
 /*
-Function that clears the terminal output
+Function that clears the terminal output.
 We use the ANSI Escape Sequences
 */
 func ClearConsole() {
