@@ -10,7 +10,6 @@ import (
 Function used to print texts in color
 We use the ANSI Escape Sequences
 */
-
 func PrintColor(s, color string) {
 	color_map := map[string]string{ //map to store the corresponding color's ansi code
 		"Black":  "\033[0;30m",
@@ -28,7 +27,6 @@ func PrintColor(s, color string) {
 /*
 Function that displays the current state of the hangman according to the number of errors
 */
-
 func DisplayHangman(numberError int) {
 	file := GetFileLineInSlice("../Templates/hangman/hangman.txt")
 	if numberError > 10 {
@@ -47,7 +45,6 @@ func DisplayHangman(numberError int) {
 /*
 Function that displays a message in case of incorrect letter
 */
-
 func DisplayWrongLetter(numberError, maxError int) {
 	PrintColor("Not present in the word, ", "White")
 	PrintColor(strconv.Itoa(maxError-numberError), "Red")
@@ -57,7 +54,6 @@ func DisplayWrongLetter(numberError, maxError int) {
 /*
 function that displays the word according to the template mod
 */
-
 func DisplayModLetter(save *Save, color string, withSpace, input bool) {
 	pathDisplay := "../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt"
 	multiple := CalculateLinesbtwChar(pathDisplay)
@@ -80,13 +76,14 @@ func DisplayModLetter(save *Save, color string, withSpace, input bool) {
 Func that makes a loding bar
 
 [░░░░░░░░░░░░░░░░░░░░░░░░░░░]
+
 [███████████░░░░░░░░░░░░░░░░]
+
 [███████████████████████████]
 
 ░ 176
 █ 219
 */
-
 func LoadingBar(t time.Duration) { //t = Duration in millisecond
 	ldbar := "[░░░░░░░░░░░░░░░░░░░░░░░░░░░]"
 	ldbarRune := []rune(ldbar)
