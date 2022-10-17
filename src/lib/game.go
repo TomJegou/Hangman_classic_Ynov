@@ -25,7 +25,7 @@ func Game(save *Save, new bool) {
 		for i := 0; i < numberLetterRevealed; i++ {
 			indexLetterRevealed := rand.New(rand.NewSource(time.Now().UnixNano())).Intn(len(save.CurrentStateWord))
 			DiscoverLetter(save.CurrentStateWord, string(save.WordToGess[indexLetterRevealed]), save.WordToGess)
-			save.InputHistory, _ = Checktwice(string(save.WordToGess[indexLetterRevealed]), save.InputHistory)
+			save.InputHistory, _ = CheckTwice(string(save.WordToGess[indexLetterRevealed]), save.InputHistory)
 		}
 		// Create a slice of the remaining letters to guess
 		save.RemainLetter = RemainingLetter(save.CurrentStateWord, save.WordToGess)
@@ -117,7 +117,7 @@ func Game(save *Save, new bool) {
 			continue
 		}
 		//check if the input as been already played
-		save.InputHistory, twice = Checktwice(input, save.InputHistory)
+		save.InputHistory, twice = CheckTwice(input, save.InputHistory)
 		if IsIn(save.SliceAllChar, input) && IsIn(save.RemainLetter, input) { // in case of good answer
 			DiscoverLetter(save.CurrentStateWord, input, save.WordToGess)               // reveal the letter
 			save.RemainLetter = RemainingLetter(save.CurrentStateWord, save.WordToGess) // reffresh the slice of remanig letter
