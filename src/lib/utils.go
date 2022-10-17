@@ -22,7 +22,7 @@ in order to used different type of policies with different format
 We just count the number of line the first char of the file which
 is the char space.
 */
-func CalculateLinesbtwChar(pathtofile string) int {
+func CalculateLinesBtwChar(pathtofile string) int {
 	countLine := 1
 	sliceLines := GetFileLineInSlice(pathtofile)
 	for i := 1; i < len(sliceLines); i++ {
@@ -47,12 +47,12 @@ func CalculateLinesbtwChar(pathtofile string) int {
 Check if the letter parameter is twice in a string table t,
 if yes it returns true and the table otherwhise it append the letter in t and returns false
 */
-func CheckTwice(letter string, t []string) ([]string, bool) {
-	if IsIn(t, letter) {
-		return t, true
+func CheckTwice(letter string, inputHistory []string) ([]string, bool) {
+	if IsIn(inputHistory, letter) {
+		return inputHistory, true
 	}
-	t = append(t, letter)
-	return t, false
+	inputHistory = append(inputHistory, letter)
+	return inputHistory, false
 }
 
 /*

@@ -56,7 +56,7 @@ function that displays the word according to the template mod
 */
 func DisplayModLetter(save *Save, color string, withSpace, input bool) {
 	pathDisplay := "../Templates/policies/" + save.TemplatesNames[save.DisplayMode] + ".txt"
-	multiple := CalculateLinesbtwChar(pathDisplay)
+	multiple := CalculateLinesBtwChar(pathDisplay)
 	for i := 1; i <= multiple; i++ { // loop each line
 		l := ""                                           // store line
 		for j := 0; j < len(save.CurrentStateWord); j++ { // loop for each character
