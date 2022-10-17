@@ -107,7 +107,9 @@ func SaveMenu() {
 	}
 }
 
-/*Menu to at the endgame to choose to continue or not*/
+/*
+Menu to at the endgame to choose to continue or not
+*/
 
 func EndgameMenu(save *Save, found bool) {
 	// Display endgame message
