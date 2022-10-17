@@ -8,7 +8,6 @@ import (
 /*
 Displays Menu to choose the diplay Mod and start the game
 */
-
 func ModeMenu(save *Save, issave bool) {
 	if issave {
 		issave = false
@@ -46,7 +45,6 @@ func ModeMenu(save *Save, issave bool) {
 /*
 Displays Menu to choose a dictionnary
 */
-
 func DicMenu(save *Save, issave bool) {
 	if issave {
 		issave = false
@@ -82,7 +80,6 @@ func DicMenu(save *Save, issave bool) {
 /*
 Menu to choose if it loads the save
 */
-
 func SaveMenu() {
 	var input string // Store the input player
 	loop := true
@@ -110,7 +107,6 @@ func SaveMenu() {
 /*
 Menu to at the endgame to choose to continue or not
 */
-
 func EndgameMenu(save *Save, found bool) {
 	// Display endgame message
 	if found {
