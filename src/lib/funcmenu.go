@@ -8,9 +8,9 @@ import (
 /*
 Displays Menu to choose the diplay Mod and start the game
 */
-func ModeMenu(save *Save, issave bool) {
-	if issave {
-		issave = false
+func ModeMenu(save *Save, isSave bool) {
+	if isSave {
+		isSave = false
 		Game(save, false)
 	}
 	save.TemplatesNames = ScanDir("../Templates/policies/") // Get the map of all templates policies as value and an index as key
@@ -45,9 +45,9 @@ func ModeMenu(save *Save, issave bool) {
 /*
 Displays Menu to choose a dictionnary
 */
-func DicMenu(save *Save, issave bool) {
-	if issave {
-		issave = false
+func DicMenu(save *Save, isSave bool) {
+	if isSave {
+		isSave = false
 		ModeMenu(save, true)
 	}
 	save.DictionnaryNames = ScanDir("../dictionnaries/")
