@@ -8,7 +8,6 @@ import (
 /*
 Data Save structure
 */
-
 type Save struct {
 	Debug                                                bool
 	NumberError, MaxError, AttemptNumber                 int
@@ -21,7 +20,6 @@ type Save struct {
 /*
 Function that loads a Save
 */
-
 func LoadSave() *Save {
 	save := &Save{}
 	bytevalue, err := os.ReadFile("saves/save.json")
@@ -35,7 +33,6 @@ func LoadSave() *Save {
 /*
 Function that saves a game
 */
-
 func SaveGame(save *Save) {
 	byteValue, err := json.MarshalIndent(save, "", "    ") //Marshalls the data in save with an indent of four spaces for a better lisibility
 	if err != nil {
@@ -47,7 +44,6 @@ func SaveGame(save *Save) {
 /*
 Function that resets the word ,nb error , attempt ,from the save
 */
-
 func ResetWordFromSave(save *Save) {
 	save.AttemptNumber = 0
 	save.NumberError = 0
