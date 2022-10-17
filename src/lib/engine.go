@@ -14,7 +14,7 @@ func Engine(issave bool) {
 	for loop {
 		ClearConsole()
 		if !validOutput { //display message in case of invalid output
-			PrintColor("Invalid output !\n\n", "White")
+			PrintColor("Invalid Input !\n\n", "White")
 		} else {
 			PrintColor("Welcome to Classic Hangman made by rLouis and jTom\n\n", "White")
 		}
