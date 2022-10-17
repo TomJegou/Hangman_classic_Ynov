@@ -9,7 +9,6 @@ import (
 /*
 Function main that check if a save exists and call the Engine function from the package lib or the load save Menu if there is a save
 */
-
 func main() {
 	/*
 		We want that the user can start the executable file whatever his current working directory is
