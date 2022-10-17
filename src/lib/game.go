@@ -10,8 +10,8 @@ import (
 /*
 Game function, main loop of the game with all the settings already set by the player before the call function
 */
-func Game(save *Save, new bool) {
-	if new {
+func Game(save *Save, isNewGame bool) {
+	if isNewGame {
 		hiddenWord := ""
 		for i := 0; i < len(save.WordToGess); i++ { // append all charcater into a slice in order to be read by the Isin function
 			save.SliceAllChar = append(save.SliceAllChar, string(save.WordToGess[i]))
