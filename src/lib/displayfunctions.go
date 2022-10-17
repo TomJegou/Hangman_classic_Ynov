@@ -10,7 +10,7 @@ import (
 Function used to print texts in color
 We use the ANSI Escape Sequences
 */
-func PrintColor(s, color string) {
+func PrintColor(stringToColor, color string) {
 	color_map := map[string]string{ //map to store the corresponding color's ansi code
 		"Black":  "\033[0;30m",
 		"Red":    "\033[0;31m",
@@ -20,7 +20,7 @@ func PrintColor(s, color string) {
 		"Purple": "\033[0;35m",
 		"Cyan":   "\033[0;36m",
 		"White":  "\033[0;37m"}
-	fmt.Printf("%v%v", color_map[color], s)
+	fmt.Printf("%v%v", color_map[color], stringToColor)
 	fmt.Printf("%v", color_map["White"])
 }
 
@@ -84,14 +84,14 @@ Func that makes a loding bar
 ░ 176
 █ 219
 */
-func LoadingBar(t time.Duration) { //t = Duration in millisecond
+func LoadingBar(duration time.Duration) { //Duration in millisecond
 	ldbar := "[░░░░░░░░░░░░░░░░░░░░░░░░░░░]"
 	ldbarRune := []rune(ldbar)
 	for i := 1; i < len(ldbarRune)-1; i++ {
 		ClearConsole()
 		ldbarRune[i] = rune('█')
 		PrintColor(string(ldbarRune), "Red")
-		time.Sleep(t * time.Millisecond) //pauses for t milliseconds
+		time.Sleep(duration * time.Millisecond) //pauses for t milliseconds
 	}
 	ClearConsole()
 	PrintColor(string(ldbarRune), "Green")
