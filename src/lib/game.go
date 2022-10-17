@@ -10,7 +10,6 @@ import (
 /*
 Game function, main loop of the game with all the settings already set by the player before the call function
 */
-
 func Game(save *Save, new bool) {
 	if new {
 		hiddenWord := ""
