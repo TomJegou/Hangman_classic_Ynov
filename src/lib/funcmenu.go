@@ -87,7 +87,7 @@ func SaveMenu() {
 	for loop {
 		ClearConsole()
 		if !validOutput {
-			PrintColor("Invalid output !\n\n", "White")
+			PrintColor("Invalid input !\n\n", "White")
 		}
 		PrintColor("Hum it seems that there is a save, would you like to load it? Y/n: ", "white")
 		input, validOutput = GetInputUser([]string{"y", "n"})
@@ -128,7 +128,7 @@ func EndgameMenu(save *Save, found bool) {
 	for loop {
 		if !validOutput {
 			ClearConsole()
-			PrintColor("Invalid output\n", "White")
+			PrintColor("Invalid input\n", "White")
 		}
 		PrintColor("[c]continue [q]quit [b]Back\n\n", "White")
 		PrintColor("Choose: ", "White")
