@@ -8,7 +8,7 @@ import (
 )
 
 /*
-Game function, main loop of the game with all the settings already set by the player before the function call
+Game function, main loop of the game with all the settings already set by the player before the call function
 */
 
 func Game(save *Save, new bool) {
@@ -17,7 +17,7 @@ func Game(save *Save, new bool) {
 		for i := 0; i < len(save.WordToGess); i++ { // append all charcater into a slice in order to be read by the Isin function
 			save.SliceAllChar = append(save.SliceAllChar, string(save.WordToGess[i]))
 		}
-		// the programm will reveal n random letters in the word, where n is the len(word) / 2 - 1
+		// the programm will reveal n random letters in the word, where n is len(word) / 2 - 1
 		numberLetterRevealed := len(save.WordToGess)/2 - 1
 		for i := 0; i < len(save.WordToGess); i++ {
 			hiddenWord += "_"
@@ -28,7 +28,7 @@ func Game(save *Save, new bool) {
 			DiscoverLetter(save.CurrentStateWord, string(save.WordToGess[indexLetterRevealed]), save.WordToGess)
 			save.InputHistory, _ = Checktwice(string(save.WordToGess[indexLetterRevealed]), save.InputHistory)
 		}
-		// Create a slice of the remaining letter to guess
+		// Create a slice of the remaining letters to guess
 		save.RemainLetter = RemainingLetter(save.CurrentStateWord, save.WordToGess)
 	}
 	SaveGame(save)
@@ -93,7 +93,7 @@ func Game(save *Save, new bool) {
 		}
 		/*end easter egg*/
 		// check the input validity
-		if input == "STOP" {
+		if input == "STOP" { //Possibility to stop the game
 			SaveGame(save)
 			ClearConsole()
 			PrintColor("Thanks for playing !", "White")
@@ -127,6 +127,6 @@ func Game(save *Save, new bool) {
 		}
 		SaveGame(save)
 	}
-	//loop to ask the player to keep playing or not
+	//Call the endgame Menu to ask the player to keep playing or not
 	EndgameMenu(save, found)
 }
