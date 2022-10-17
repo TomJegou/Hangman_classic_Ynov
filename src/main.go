@@ -7,15 +7,15 @@ import (
 )
 
 /*
-Function main that call the Engine function from the package lib
+Function main that check if a save exists and call the Engine function from the package lib or the load save Menu if there is a save
 */
 
 func main() {
 	/*
-		We want that the user can start the executable file whatever is current working directory is
+		We want that the user can start the executable file whatever his current working directory is
 	*/
-	executablepath, _ := os.Executable()    // get the absolute path off the executable
-	t := strings.Split(executablepath, "/") //split into a slice all the dir name
+	executablepath, _ := os.Executable()    // get the absolute path of the executable
+	t := strings.Split(executablepath, "/") //split into a slice all the dir's name
 	srcpath := "/"                          // this will be the path where we will redirect the program
 	for i := 0; i < len(t)-2; i++ {
 		srcpath += t[i] + "/"
