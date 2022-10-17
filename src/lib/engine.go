@@ -14,7 +14,7 @@ func Engine(issave bool) {
 	validOutput := true
 	for loop {
 		ClearConsole()
-		if !validOutput {
+		if !validOutput { //display message in case of invalid output
 			PrintColor("Invalid output !\n\n", "White")
 		} else {
 			PrintColor("Welcome to Classic Hangman made by rLouis and jTom\n\n", "White")
@@ -22,7 +22,7 @@ func Engine(issave bool) {
 		PrintColor("[s]: Start new game", "Green")
 		PrintColor("\n[q]: quit\n\n", "Red") // change print
 		PrintColor("Choose: ", "White")
-		input, validOutput = GetInputUser([]string{"s", "q"}) // force the input to be in lowercase if the user enter a capital letter
+		input, validOutput = GetInputUser([]string{"s", "q"})
 		if !validOutput {
 			continue
 		}
