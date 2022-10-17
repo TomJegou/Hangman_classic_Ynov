@@ -9,7 +9,6 @@ import (
 /*
 Function that open a file and return a slice of all lines
 */
-
 func GetFileLineInSlice(file_path string) []string {
 	data := []string{} // slice wich sotre all lines
 	file, err := os.Open(file_path)
@@ -31,7 +30,6 @@ func GetFileLineInSlice(file_path string) []string {
 /*
 Function that return the postition of the letter in the alphabet
 */
-
 func Getpositioninalphabet(letter byte) int {
 	return int(letter) - 65
 }
