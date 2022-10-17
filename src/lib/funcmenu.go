@@ -13,7 +13,7 @@ func ModeMenu(save *Save, issave bool) {
 		issave = false
 		Game(save, false)
 	}
-	save.TemplatesNames = Scandir("../Templates/policies/") // Get the map of all templates policies as value and an index as key
+	save.TemplatesNames = ScanDir("../Templates/policies/") // Get the map of all templates policies as value and an index as key
 	var input string
 	loop := true
 	validOutput := true
@@ -23,7 +23,7 @@ func ModeMenu(save *Save, issave bool) {
 			PrintColor("Invalid input\n\n", "White")
 		}
 		PrintColor("Choose your mode\n\n", "White")
-		keys := Listmap(save.TemplatesNames) // Get the key list in order to check if the next input is valid
+		keys := ListMap(save.TemplatesNames) // Get the key list in order to check if the next input is valid
 		PrintColor("[b]: Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
 		keys = append(keys, []string{"b"}...)
@@ -50,7 +50,7 @@ func DicMenu(save *Save, issave bool) {
 		issave = false
 		ModeMenu(save, true)
 	}
-	save.DictionnaryNames = Scandir("../dictionnaries/")
+	save.DictionnaryNames = ScanDir("../dictionnaries/")
 	var input string
 	loop := true
 	validOutput := true
@@ -60,7 +60,7 @@ func DicMenu(save *Save, issave bool) {
 			PrintColor("Invalid input\n\n", "White")
 		}
 		PrintColor("Choose your dictionnaries\n\n", "White")
-		keys := Listmap(save.DictionnaryNames)
+		keys := ListMap(save.DictionnaryNames)
 		PrintColor("[b]: Back\n\n", "Red")
 		PrintColor("Choose: ", "White")
 		keys = append(keys, []string{"b"}...)
