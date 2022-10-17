@@ -3,9 +3,9 @@ package lib
 /*
 Function Engine is the main loop for the hangman game
 */
-func Engine(issave bool) {
-	if issave {
-		issave = false
+func Engine(isSave bool) {
+	if isSave {
+		isSave = false
 		DicMenu(LoadSave(), true)
 	}
 	var input string // Store the input player
