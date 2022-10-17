@@ -150,6 +150,7 @@ func EndgameMenu(save *Save, found bool) {
 		} else {
 			ResetWordFromSave(save)
 			loop = false
+			ModeMenu(save, false)
 		}
 	}
 }
