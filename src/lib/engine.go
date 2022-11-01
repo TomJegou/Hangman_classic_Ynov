@@ -34,7 +34,6 @@ func Engine(isSave bool) {
 		} else {
 			ClearConsole()
 			PrintColor("Thanks for Playing !\n", "White")
-			loop = false
 			os.Exit(0)
 		}
 	}
