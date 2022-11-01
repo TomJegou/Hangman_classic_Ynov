@@ -31,6 +31,7 @@ func ModeMenu(save *Save, isSave bool) {
 		if !validOutput {
 			continue
 		} else if input == "b" {
+			DicMenu(save, isSave)
 			loop = false
 		} else {
 			ClearConsole()
@@ -38,6 +39,7 @@ func ModeMenu(save *Save, isSave bool) {
 			time.Sleep(1 * time.Second)
 			save.DisplayMode = input
 			Game(save, true) // Call the function Game
+			loop = false
 		}
 	}
 }
@@ -68,11 +70,13 @@ func DicMenu(save *Save, isSave bool) {
 		if !validOutput {
 			continue
 		} else if input == "b" {
+			Engine(false)
 			loop = false
 		} else {
 			save.ListsWords = GetFileLineInSlice("../dictionnaries/" + save.DictionnaryNames[input] + ".txt")
 			save.WordToGess = ChoseRandomWord(save.ListsWords)
 			ModeMenu(save, false)
+			loop = false
 		}
 	}
 }
@@ -96,10 +100,10 @@ func SaveMenu() {
 		} else if input == "y" {
 			LoadingBar(25)
 			Engine(true)
-			return
+			loop = false
 		} else {
 			Engine(false)
-			return
+			loop = false
 		}
 	}
 }
@@ -140,6 +144,7 @@ func EndgameMenu(save *Save, found bool) {
 			time.Sleep(1 * time.Second)
 			ResetWordFromSave(save)
 			Game(save, true)
+			loop = false
 		} else if input == "q" {
 			ClearConsole()
 			PrintColor("Thanks for playing !", "White")
@@ -147,8 +152,8 @@ func EndgameMenu(save *Save, found bool) {
 			os.Exit(0)
 		} else {
 			ResetWordFromSave(save)
-			loop = false
 			ModeMenu(save, false)
+			loop = false
 		}
 	}
 }

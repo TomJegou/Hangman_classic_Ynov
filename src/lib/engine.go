@@ -1,5 +1,7 @@
 package lib
 
+import "os"
+
 /*
 Function Engine is the main loop for the hangman game
 */
@@ -7,6 +9,7 @@ func Engine(isSave bool) {
 	if isSave {
 		isSave = false
 		DicMenu(LoadSave(), true)
+		return
 	}
 	var input string // Store the input player
 	loop := true
@@ -27,10 +30,12 @@ func Engine(isSave bool) {
 		}
 		if input == "s" {
 			DicMenu(&Save{MaxError: 10, AttemptNumber: 0, Debug: false}, false) // calls the menu function
+			loop = false
 		} else {
 			ClearConsole()
 			PrintColor("Thanks for Playing !\n", "White")
 			loop = false
+			os.Exit(0)
 		}
 	}
 }
